@@ -1,0 +1,34 @@
+:root {
+
+	--footer-height: 120px;
+	--primary-color: #FF6F00;
+	--secondary-color: #212121;
+	--complimentary-color: yellow;
+	--navbar-color: white;
+	--text-color: black;
+	--spacing: 16px;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	background-color: green !important;
+	min-height: 100dvh;
+	min-width: 100vw;
+}
+
+.navbar, .navbar * {
+	background-color: var(--navbar-color);
+	color: var(--text-color);
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--navbar-color: black;
+		--text-color: white
+	}
+}
