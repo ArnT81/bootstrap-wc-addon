@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background-color: green !important;
+  background-color: green;
   min-height: 100dvh;
   min-width: 100vw;
 }
