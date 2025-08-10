@@ -22,4 +22,4 @@ class Button extends HTMLElement {
 	}
 }
 
-$(() => { customElements.define("my-button", Button) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-button", Button) })

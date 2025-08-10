@@ -1,5 +1,4 @@
 class Spinner extends HTMLElement {
-
 	connectedCallback() {
 		const color = this.getAttribute('type') || 'primary';
 		const variant = this.getAttribute('variant') || 'border';
@@ -11,6 +10,8 @@ class Spinner extends HTMLElement {
 			</div>
 		`;
 	}
+
+
 }
 
-$(() => { customElements.define("my-spinner", Spinner) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-spinner", Spinner) })

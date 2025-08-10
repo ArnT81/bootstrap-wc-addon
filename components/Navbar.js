@@ -1,7 +1,3 @@
-
-
-
-
 class Navbar extends HTMLElement {
 	connectedCallback() {
 		let links = [];
@@ -9,29 +5,32 @@ class Navbar extends HTMLElement {
 		catch (e) { console.error("Invalid JSON in links attribute", e) }
 
 		const brand = this.getAttribute("brand") || ""
-		const focusColor = this.getAttribute("focusColor") || "var(--primary-color)"
-
+		const focusColor = this.getAttribute("focus-color") || ""
 
 		this.innerHTML = `
 			<style>
 				.navbar-toggler:focus {
-					box-shadow: 0 0 0 0.15rem ${focusColor} !important;
-					outline: none;
+					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
 				}
 
 				.btn-close:focus {
-					box-shadow: 0 0 0 0.15rem ${focusColor} !important;
-					outline: none;
+					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
 				}
 			</style>
 
 			<nav class="navbar fixed-top position-relative">
 				<div class="container-fluid">
-					<div class="navbar-brand" style="color: inherit;">${brand}</div>
+					<div class="navbar-brand">${brand}</div>
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+					style="border-color: inherit;"
 					data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-						<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+						<svg
+							width="30"
+							height="30"
+							viewBox="0 0 30 30"
+							xmlns="http://www.w3.org/2000/svg"
+						>
 							<path
 								stroke-linecap='round'
 								stroke-miterlimit='10'
@@ -74,7 +73,37 @@ class Navbar extends HTMLElement {
 			</nav>
         `;
 	}
+
+	documentation() {
+		return {
+			"tag name": "bs-navbar",
+			description: "Bootstrap Offcanvas navbar.",
+			requirements: {
+				"bootstrap.min.css": "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr\" crossorigin=\"anonymous\">",
+				"bootstrap.bundle.min.js": "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>"
+			},
+			attributes: {
+				links: {
+					"description": "Links to display in the \"offcanvas-body\"",
+					"type": "JSON array of link objects with \"href\" and \"label\".",
+					"example": "links=\"[{\"href\": \"#home\", \"label\": \"Home\"}, {\"href\": \"#about\", \"label\": \"About\"}]\"",
+					"default": "[]"
+				},
+				brand: {
+					"description": "Brand name displayed in the navbar & offcanvas.",
+					"type": "String",
+					"example": "brand=\"My company name\"",
+					"default": "My company name"
+				},
+				"focus-color": {
+					"description": "Color for focus state of toggler and close button.",
+					"type": "String (CSS color value)",
+					"example": "focus-color=\"green\"",
+					"default": "none"
+				}
+			}
+		}
+	}
 }
 
-
-$(() => { customElements.define("my-navbar", Navbar) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-navbar", Navbar) })
