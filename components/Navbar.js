@@ -16,6 +16,8 @@ class Navbar extends HTMLElement {
 				.btn-close:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
 				}
+
+
 			</style>
 
 			<nav class="navbar fixed-top position-relative">
@@ -41,7 +43,7 @@ class Navbar extends HTMLElement {
 						</svg>
 					</button>
 
-					<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas offcanvas-end show" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 						<div class="offcanvas-header">
 							<a class="nav-link" aria-current="page" href="#home">
 								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">${brand}</h5>
@@ -64,7 +66,7 @@ class Navbar extends HTMLElement {
 						<div class="offcanvas-body">
 							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 								${links.map(link => `
-									<li><a class="dropdown-item" href="${link.href}">${link.label}</a></li>
+									<li><a class="nav-link" href="${link.href}" style="color: inherit;">${link.label}</a></li>
 								`).join("")}
 							</ul>
 						</div>
@@ -72,6 +74,31 @@ class Navbar extends HTMLElement {
 				</div>
 			</nav>
         `;
+
+		/* TODO fix active class on Home when index.html is shown */
+		const updateActiveLink = () => {
+			const currentUrl = window.location.href;
+			console.log(currentUrl);
+			this.querySelectorAll('a.nav-link').forEach(a => {
+				const linkUrl = new URL(a.href, window.location.origin).href;
+				if (currentUrl === linkUrl) {
+					console.log(currentUrl ,linkUrl);
+
+					a.classList.add('active');
+				} else {
+					a.classList.remove('active');
+				}
+			});
+		};
+
+		// Kör direkt när komponenten laddas
+		updateActiveLink();
+
+		// Lyssna på hashändringar (för single-page navigering)
+		window.addEventListener('hashchange', updateActiveLink);
+
+		// Lyssna på popstate (framåt/bakåt navigation utan reload i SPA-läge)
+		window.addEventListener('popstate', updateActiveLink);
 	}
 
 	documentation() {
@@ -86,7 +113,7 @@ class Navbar extends HTMLElement {
 				links: {
 					"description": "Links to display in the \"offcanvas-body\"",
 					"type": "JSON array of link objects with \"href\" and \"label\".",
-					"example": "links=\"[{\"href\": \"#home\", \"label\": \"Home\"}, {\"href\": \"#about\", \"label\": \"About\"}]\"",
+					"example": "links='[{\"href\": \"#home\", \"label\": \"Home\"}, {\"href\": \"#about\", \"label\": \"About\"}]'",
 					"default": "[]"
 				},
 				brand: {

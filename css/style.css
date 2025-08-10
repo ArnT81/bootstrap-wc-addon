@@ -1,10 +1,10 @@
-/* :root {
+:root {
   --footer-height: 120px;
   --primary-color: #FF6F00;
   --secondary-color: #212121;
   --complimentary-color: yellow;
-  --navbar-color: red;
-  --text-color: green;
+  --navbar-color: white;
+  --text-color: black;
   --spacing: 16px;
 }
 
@@ -22,9 +22,13 @@ body {
   color: var(--text-color);
 }
 
+.active {
+  color: red;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --navbar-color: black;
     --text-color: white ;
   }
-} */
+}
