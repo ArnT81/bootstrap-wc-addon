@@ -13,25 +13,23 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff;">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="shortcut icon" href="#" />
-	<link rel="preload" href="https://www.anderssöderberg.se/fonts/?Ubuntu" as="font" type="font/woff2"
-		crossorigin="anonymous">
+
+
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="css/style.min.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
 
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-
+	<link rel="stylesheet" href="css/style.min.css">
 
 	<script rel="script" src="/components/Navbar.js"></script>
 	<script rel="script" src="/components/Button.js"></script>
 	<script rel="script" src="/components/Spinner.js"></script>
-	<script rel="script" src="/components/Tooltip.js"></script>
+	<script rel="script" src="/components/Toast.js"></script>
 	<script rel="script" src="index.js" defer></script>
 </head>
 
@@ -49,40 +47,25 @@
 	</header>
 
 	<main>
+		<br>
+		<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+		<my-toast variant="warning"></my-toast>
+
+		<br>
+
+		<my-toast variant="info" title="WOW"
+			text="chockad över hur lite som krävs för att få ett utvecklingsarbete om man har tillräckligt många år som utvecklare"
+			autoplay></my-toast>
+		<br>
+
 		<my-button variant="primary">fisse</my-button>
 
 
 		<my-spinner color="primary"></my-spinner>
 		<my-tooltip text="WOHOOO"></my-tooltip>
-		<!-- <p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus pariatur minima aliquid facilis
-			possimus dolorem odio unde praesentium facere quaerat odit, ratione sed atque consectetur suscipit obcaecati
-			excepturi numquam temporibus!
-			Id dicta eum praesentium laboriosam tenetur ratione distinctio itaque, quis in doloribus minus nulla laborum
-			at porro aperiam, autem dolorum similique cupiditate? Facilis quo incidunt sunt perspiciatis doloremque enim
-			nemo.
-			Aliquid, adipisci cum dolorem consectetur fugiat esse vero, itaque placeat saepe nisi doloribus corporis
-			consequuntur quibusdam? Autem laboriosam expedita adipisci. Illum, soluta vitae! Culpa veniam magni cumque,
-			adipisci minus cupiditate.
-			Voluptatem temporibus beatae deserunt architecto doloribus, labore quidem ea id dignissimos, eos velit modi
-			error, eum officiis eius quam earum deleniti autem nemo expedita esse asperiores? Officia architecto aperiam
-			iste.
-			Perspiciatis, officiis itaque. Atque laborum ducimus repellendus itaque inventore sapiente soluta ab odio
-			consectetur reprehenderit iure ut earum culpa quibusdam, commodi perspiciatis nulla excepturi est illo ea
-			corporis provident. Mollitia.
-			Eos fugiat quod necessitatibus aliquid aut fugit labore eveniet numquam, rem, beatae nemo dicta sit? Minima
-			atque mollitia sint debitis eaque! Sunt hic atque voluptatum facere quasi voluptas molestiae optio.
-			Aperiam aut iste fugit libero deleniti laudantium repudiandae, doloremque voluptatibus fuga, possimus in
-			alias velit nesciunt minima eos! Praesentium rem ducimus quisquam hic? Eveniet quam dolorum vero voluptatem
-			optio soluta.
-			Aperiam recusandae ipsa suscipit et iste esse iure, facilis laborum numquam sunt, accusamus ea unde. Totam
-			minima hic voluptate omnis quos possimus incidunt, sit tenetur perspiciatis rerum molestias porro sed!
-			Quod, quas? Ipsum placeat temporibus fugiat numquam illum! Perferendis, unde fuga sunt ab eveniet illo
-			quisquam eaque nisi accusamus iusto! Dolor unde minus alias maxime sit veritatis reprehenderit quaerat et?
-			Temporibus molestiae natus sunt nesciunt omnis, excepturi illo quas facilis tempora praesentium voluptatem
-			deleniti sed id dolorem vitae voluptatum architecto laboriosam esse reprehenderit iusto numquam! Unde
-			ratione hic tempore sint?
-		</p> -->
+
+
 
 
 

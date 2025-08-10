@@ -1,0 +1,76 @@
+
+const icons = {
+	warning: `<path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />`,
+	info: `<path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />`
+}
+
+
+const colors = {
+	warning: 'warning',
+	info: 'primary',
+}
+
+
+class Toast extends HTMLElement {
+	connectedCallback() {
+		const title = this.getAttribute('title') || 'Titel saknas';
+		const text = this.getAttribute('text') || 'Text saknas';
+		const variant = this.getAttribute('variant') || 'info';
+		const extraClasses = this.getAttribute('extraClasses') || '';
+		const duration = this.getAttribute('duration') || 3000;
+
+
+		this.innerHTML = `
+            <div id="myToast" class="toast-container position-fixed bottom-0 end-0 p-3 ${extraClasses}">
+                <div
+					class="toast text-bg-${colors[variant]}"
+					role="alert"
+					aria-live="assertive"
+					aria-atomic="true"
+					data-bs-delay="${duration}"
+				>
+                    <div class="toast-header">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 26 26"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							style="width: 26px; height: 26px;"
+						>
+							${icons[variant]}
+						</svg>
+
+                        <strong class="me-auto">${title}</strong>
+
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+
+                    <div class="toast-body">${text}</div>
+                </div>
+            </div>
+        `;
+
+
+		const toastEl = this.querySelector('.toast');
+		this.toastInstance = new bootstrap.Toast(toastEl);
+
+
+		if (this.hasAttribute('autoplay')) this.showToast();
+	}
+
+
+	showToast() { if (this.toastInstance) this.toastInstance.show() }
+
+
+	setToastContent({ title, text, variant }) {
+		if (title) this.querySelector('.me-auto').textContent = title;
+		if (text) this.querySelector('.toast-body').textContent = text;
+		if (variant) {
+			const toastEl = this.querySelector('.toast');
+			toastEl.className = `toast text-bg-${variant}`;
+		}
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => { customElements.define('my-toast', Toast) })

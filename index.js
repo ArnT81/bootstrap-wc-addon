@@ -1,19 +1,18 @@
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
+	liveToastBtn = document.getElementById('liveToastBtn');
 
+	liveToastBtn.addEventListener('click', () => {
+		const myToast = document.querySelector('my-toast');
 
-	//components
-	// customElements.define('my-navbar', MyNavbar);
+		myToast.setToastContent({
+			title: 'titel',
+			text: 'text',
+			variant: 'warning'
+		});
 
-
-	/*
-	customElements.define('my-button', Button);
-
-	const button = document.querySelector('my-button');
-	button.addEventListener('btn-click', () => {
-		console.log('Happens');
-	}) */
-
+		myToast.showToast();
+	});
 })
-
-
-// customElements.define('my-card', Card);
