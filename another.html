@@ -33,8 +33,8 @@
 
 <body>
 	<header>
-		<bs-navbar brand="My company name" current-path="Another"
-			links='[{"href": "index.html", "label": "Home"}, {"href": "#about", "label": "About"}, {"href": "another.html", "label": "Another"}]'>
+		<bs-navbar brand="My company name" class="bg-primary" focus-color="green"
+			links='[{"href": "/", "label": "Home"}, {"Nested": [{"href": "nested.html", "label": "Nested 1:1"}, {"href": "#nested", "label": "Nested 1:2"}]}, {"href": "#top", "label": "Top"},{"href": "#about", "label": "About"}, {"href": "another.html", "label": "En annan"}, {"Nested 2": [{"href": "nested.html", "label": "Nested 2:1"}, {"href": "#nested", "label": "Nested 2:2"}]}]'>
 		</bs-navbar>
 	</header>
 </body>

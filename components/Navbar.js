@@ -15,9 +15,21 @@ class Navbar extends HTMLElement {
 				.navbar-toggler:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
 				}
-
 				.btn-close:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
+				}
+				.dropdown-toggle:hover {
+					color: inherit;
+				}
+				.dropdown-toggle:focus {
+					color: inherit !important;
+				}
+				.dropdown-item:hover {
+					color: inherit;
+					background-color: inherit;
+				}
+				.dropdown-menu {
+					border-color: inherit;
 				}
 			</style>
 
@@ -69,9 +81,31 @@ class Navbar extends HTMLElement {
 
 						<div class="offcanvas-body">
 							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-								${links.map(link => `
-									<li><a class="nav-link" href="${link.href}" style="color: inherit;">${link.label}</a></li>
-								`).join("")}
+								${links.map(link => {
+									const entries = Object.entries(link);
+
+									// Om nyckeln inte är href/label, tolkas som dropdown
+									if (entries.length === 1 && Array.isArray(entries[0][1])) {
+										const [dropdownLabel, subLinks] = entries[0];
+
+										return `
+										<li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+												${dropdownLabel}
+											</a>
+
+											<ul class="dropdown-menu">
+												${subLinks.map(sub => `
+													<li><a class="dropdown-item" href="${sub.href}">${sub.label}</a></li>
+												`).join("")}
+											</ul>
+										</li>
+									`;}
+									// Vanlig länk
+									return `
+									<li class="nav-item">
+										<a class="nav-link" href="${link.href}" style="color: inherit;">${link.label}</a>
+									</li>`}).join("")}
 							</ul>
 						</div>
 					</div>
