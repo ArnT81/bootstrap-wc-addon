@@ -4,11 +4,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
+	$("#form").on('submit', (e) => {
+		e.preventDefault();
+		const body = Object.fromEntries(new FormData(e.target));
 
 
-
-
-
+		console.log(body);
+	});
 
 
 	/* liveToastBtn = document.getElementById('liveToastBtn');

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --footer-height: 120px;
   --primary-color: #FF6F00;
@@ -17,13 +18,21 @@ body {
   min-width: 100vw;
 }
 
-.navbar, .navbar * {
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  /* för att ligga ovanför annat innehåll */
+}
+
+.navbar,
+.navbar * {
   background-color: var(--navbar-color);
   color: var(--text-color);
 }
 
 .active {
-  color: red;
+  color: red !important;
 }
 
 @media (prefers-color-scheme: dark) {
