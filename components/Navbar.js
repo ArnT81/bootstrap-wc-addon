@@ -1,11 +1,14 @@
 class Navbar extends HTMLElement {
+
+	//todo om links har nested arrays skapa dropdowns
+
 	connectedCallback() {
 		let links = [];
 		try { links = JSON.parse(this.getAttribute("links") || "[]") }
 		catch (e) { console.error("Invalid JSON in links attribute", e) }
-
 		const brand = this.getAttribute("brand") || ""
 		const focusColor = this.getAttribute("focus-color") || ""
+		const position = this.getAttribute("position") || "position-sticky";
 
 		this.innerHTML = `
 			<style>
@@ -18,7 +21,7 @@ class Navbar extends HTMLElement {
 				}
 			</style>
 
-			<nav class="navbar fixed-top position-relative">
+			<nav class="navbar ${position}">
 				<div class="container-fluid">
 					<div class="navbar-brand">${brand}</div>
 
@@ -41,7 +44,10 @@ class Navbar extends HTMLElement {
 						</svg>
 					</button>
 
-					<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div
+						class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
+						style="max-width: 85vw"
+					>
 						<div class="offcanvas-header">
 							<a class="nav-link" aria-current="page" href="#home">
 								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">${brand}</h5>
@@ -72,6 +78,11 @@ class Navbar extends HTMLElement {
 				</div>
 			</nav>
         `;
+
+		if (position == "position-sticky") {
+			document.querySelector("html").style.scrollPaddingTop = `${this.offsetHeight}px`;
+			document.querySelector(".navbar").style.top = "0";
+		};
 
 		const normalizeUrl = url => {
 			let u = new URL(url, window.location.origin);
@@ -129,6 +140,21 @@ class Navbar extends HTMLElement {
 					"type": "String",
 					"example": "brand=\"My company name\"",
 					"default": "My company name"
+				},
+				position: {
+					"description": "Position of the navbar.",
+					"type": "String",
+					"alternatives": [
+						"position-static",
+						"position-relative",
+						"position-absolute",
+						"position-fixed",
+						"position-sticky",
+						"fixed-top",
+						"fixed-bottom",
+					],
+					"example": "position=\"static\"",
+					"default": "sticky"
 				},
 				"focus-color": {
 					"description": "Color for focus state of toggler and close button.",

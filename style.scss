@@ -1,9 +1,9 @@
 :root {
-
 	--footer-height: 120px;
 	--primary-color: #FF6F00;
 	--secondary-color: #212121;
 	--complimentary-color: yellow;
+	--navbar-height: 60px;
 	--navbar-color: white;
 	--text-color: black;
 	--spacing: 16px;
@@ -20,13 +20,8 @@ body {
 
 
 .navbar {
-	position: sticky;
-	top: 0;
-	z-index: 1020;
-	/* för att ligga ovanför annat innehåll */
+	height: var(--navbar-height);
 }
-
-
 
 .navbar,
 .navbar * {

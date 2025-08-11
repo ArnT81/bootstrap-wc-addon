@@ -33,14 +33,12 @@
 </head>
 
 <body>
-	<header>
-		<bs-navbar brand="My company name" class="bg-primary"
-			links='[{"href": "/", "label": "Home"}, {"href": "#top", "label": "Top"},{"href": "#about", "label": "About"}, {"href": "another.html", "label": "En annan"}]'>
+	<bs-navbar brand="My company name" class="bg-primary"
+		links='[{"href": "/", "label": "Home"}, {"Next": [{"href": "#nested", "label": "Nested"}]}, {"href": "#top", "label": "Top"},{"href": "#about", "label": "About"}, {"href": "another.html", "label": "En annan"}]'>
+	</bs-navbar>
 
-		</bs-navbar>
-	</header>
 
-	<div id="top" class="mt-5 pt-5 bg-primary">
+	<div id="top" class=" bg-primary">
 		<p>Top</p>
 	</div>
 	<br>
