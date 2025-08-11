@@ -16,8 +16,6 @@ class Navbar extends HTMLElement {
 				.btn-close:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
 				}
-
-
 			</style>
 
 			<nav class="navbar fixed-top position-relative">
@@ -43,7 +41,7 @@ class Navbar extends HTMLElement {
 						</svg>
 					</button>
 
-					<div class="offcanvas offcanvas-end show" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 						<div class="offcanvas-header">
 							<a class="nav-link" aria-current="page" href="#home">
 								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">${brand}</h5>
@@ -75,30 +73,40 @@ class Navbar extends HTMLElement {
 			</nav>
         `;
 
-		/* TODO fix active class on Home when index.html is shown */
-		const updateActiveLink = () => {
-			const currentUrl = window.location.href;
-			console.log(currentUrl);
-			this.querySelectorAll('a.nav-link').forEach(a => {
-				const linkUrl = new URL(a.href, window.location.origin).href;
-				if (currentUrl === linkUrl) {
-					console.log(currentUrl ,linkUrl);
+		const normalizeUrl = url => {
+			let u = new URL(url, window.location.origin);
+			if (u.pathname === "/index.html") {
+				u.pathname = "/";
+			}
+			return u.href;
+		};
 
-					a.classList.add('active');
-				} else {
-					a.classList.remove('active');
-				}
+		const updateActiveLink = () => {
+			const currentUrl = normalizeUrl(window.location.href);
+			const currentHash = window.location.hash;
+
+			this.querySelectorAll('a.nav-link').forEach(a => {
+				const linkUrl = normalizeUrl(a.href);
+				const linkHash = new URL(a.href, window.location.origin).hash;
+
+				// Matchar bara hash-länkar när hash finns i URL:n
+				if (currentHash && currentHash === linkHash) a.classList.add('active');
+
+				// Vanlig URL-match (ingen hash)
+				else if (!currentHash && currentUrl === linkUrl) a.classList.add('active');
+
+				// Fallback (label-match)
+				// else if (!currentHash && a.innerText === currentPath) a.classList.add('active');
+
+				else a.classList.remove('active');
 			});
 		};
 
-		// Kör direkt när komponenten laddas
+		// Körs när komponenten laddas
 		updateActiveLink();
 
-		// Lyssna på hashändringar (för single-page navigering)
+		// Single-page navigering
 		window.addEventListener('hashchange', updateActiveLink);
-
-		// Lyssna på popstate (framåt/bakåt navigation utan reload i SPA-läge)
-		window.addEventListener('popstate', updateActiveLink);
 	}
 
 	documentation() {
