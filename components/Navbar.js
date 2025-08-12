@@ -8,7 +8,7 @@ class Navbar extends HTMLElement {
 		catch (e) { console.error("Invalid JSON in links attribute", e) }
 		const brand = this.getAttribute("brand") || ""
 		const focusColor = this.getAttribute("focus-color") || ""
-		const position = this.getAttribute("position") || "position-sticky";
+		const position = this.getAttribute("position") || "sticky-top";
 
 		this.innerHTML = `
 			<style>
@@ -17,16 +17,6 @@ class Navbar extends HTMLElement {
 				}
 				.btn-close:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
-				}
-				.dropdown-toggle:hover {
-					color: inherit;
-				}
-				.dropdown-toggle:focus {
-					color: inherit !important;
-				}
-				.dropdown-item:hover {
-					color: inherit;
-					background-color: inherit;
 				}
 				.dropdown-menu {
 					border-color: inherit;
@@ -82,27 +72,36 @@ class Navbar extends HTMLElement {
 						<div class="offcanvas-body">
 							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 								${links.map(link => {
-									const entries = Object.entries(link);
+			const entries = Object.entries(link);
 
-									// Om nyckeln inte är href/label, tolkas som dropdown
-									if (entries.length === 1 && Array.isArray(entries[0][1])) {
-										const [dropdownLabel, subLinks] = entries[0];
+			// dropdown/link
+			if (entries.length === 1 && Array.isArray(entries[0][1])) {
+				const [dropdownLabel, subLinks] = entries[0];
 
-										return `
+				return `
 										<li class="nav-item dropdown">
-											<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+											<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: inherit;">
 												${dropdownLabel}
 											</a>
 
 											<ul class="dropdown-menu">
 												${subLinks.map(sub => `
-													<li><a class="dropdown-item" href="${sub.href}">${sub.label}</a></li>
+													<li	class="nav-item">
+														<a
+															class="nav-link ps-3"
+															href="${sub.href}"
+															style="color: inherit;"
+														>
+														${sub.label}
+													</a>
+													</li>
 												`).join("")}
 											</ul>
 										</li>
-									`;}
-									// Vanlig länk
-									return `
+									`;
+			}
+
+			return `
 									<li class="nav-item">
 										<a class="nav-link" href="${link.href}" style="color: inherit;">${link.label}</a>
 									</li>`}).join("")}
@@ -113,7 +112,7 @@ class Navbar extends HTMLElement {
 			</nav>
         `;
 
-		if (position == "position-sticky") {
+		if (position.includes("sticky")) {
 			document.querySelector("html").style.scrollPaddingTop = `${this.offsetHeight}px`;
 			document.querySelector(".navbar").style.top = "0";
 		};
@@ -126,32 +125,43 @@ class Navbar extends HTMLElement {
 			return u.href;
 		};
 
+		const addActiveClass = (el) => el.classList.add('active');
+
+		const addActiveClassToParentDropdown = (el) => {
+			const parentDropdown = el.closest('.dropdown');
+			if (!parentDropdown) return;
+
+			const activeColor = getComputedStyle(this.querySelector('.active')).color
+
+			// parentDropdown.style.color = `color-mix(in srgb, ${activeColor} 70%, white 30%)`;
+			parentDropdown.classList.add("active")
+		};
+
+
 		const updateActiveLink = () => {
 			const currentUrl = normalizeUrl(window.location.href);
 			const currentHash = window.location.hash;
+
+			this.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
 
 			this.querySelectorAll('a.nav-link').forEach(a => {
 				const linkUrl = normalizeUrl(a.href);
 				const linkHash = new URL(a.href, window.location.origin).hash;
 
-				// Matchar bara hash-länkar när hash finns i URL:n
-				if (currentHash && currentHash === linkHash) a.classList.add('active');
-
-				// Vanlig URL-match (ingen hash)
-				else if (!currentHash && currentUrl === linkUrl) a.classList.add('active');
-
-				// Fallback (label-match)
-				// else if (!currentHash && a.innerText === currentPath) a.classList.add('active');
-
-				else a.classList.remove('active');
+				if ((currentHash && currentHash === linkHash) ||
+					(!currentHash && currentUrl === linkUrl)) {
+					addActiveClass(a);
+					addActiveClassToParentDropdown(a);
+				}
 			});
 		};
 
 		// Körs när komponenten laddas
 		updateActiveLink();
+		// document.addEventListener("DOMContentLoaded", updateActiveLink);
 
 		// Single-page navigering
-		window.addEventListener('hashchange', updateActiveLink);
+		window.addEventListener("hashchange", updateActiveLink);
 	}
 
 	documentation() {
@@ -179,6 +189,7 @@ class Navbar extends HTMLElement {
 					"description": "Position of the navbar.",
 					"type": "String",
 					"alternatives": [
+						"sticky-top",
 						"position-static",
 						"position-relative",
 						"position-absolute",
@@ -188,7 +199,7 @@ class Navbar extends HTMLElement {
 						"fixed-bottom",
 					],
 					"example": "position=\"static\"",
-					"default": "sticky"
+					"default": "sticky-top"
 				},
 				"focus-color": {
 					"description": "Color for focus state of toggler and close button.",

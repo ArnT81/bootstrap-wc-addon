@@ -18,6 +18,13 @@ body {
 	min-width: 100vw;
 }
 
+header {
+	position: sticky;
+	top: 0;
+	/* eller static (default) */
+	overflow: visible;
+	/* viktigt */
+}
 
 .navbar {
 	height: var(--navbar-height);
@@ -30,7 +37,7 @@ body {
 }
 
 .active {
-	color: red !important;
+	color: blue !important;
 }
 
 @media (prefers-color-scheme: dark) {
