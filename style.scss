@@ -4,7 +4,7 @@
 	--secondary-color: #212121;
 	--complimentary-color: yellow;
 	--navbar-height: 60px;
-	--navbar-color: none;
+	--navbar-color: rgba(255, 255, 255, 0.6);
 	--text-color: black;
 	--spacing: 16px;
 }
@@ -18,9 +18,12 @@ body {
 	min-width: 100vw;
 }
 
-.navbar,
-.navbar * {
+.navbar {
+	height: var(--navbar-height);
 	background-color: var(--navbar-color);
+}
+
+.navbar * {
 	color: var(--text-color);
 }
 
@@ -30,7 +33,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--navbar-color: #04131c;
+		--navbar-color: rgba(4, 13, 22, 0.6);
 		--text-color: white
 	}
 }
