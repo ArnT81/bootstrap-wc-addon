@@ -4,7 +4,7 @@
   --secondary-color: #212121;
   --complimentary-color: yellow;
   --navbar-height: 60px;
-  --navbar-color: white;
+  --navbar-color: none;
   --text-color: black;
   --spacing: 16px;
 }
@@ -30,7 +30,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --navbar-color: black;
+    --navbar-color: #04131c;
     --text-color: white ;
   }
 }
