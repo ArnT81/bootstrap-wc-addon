@@ -1,7 +1,10 @@
+
+
+
+
+
+
 class Navbar extends HTMLElement {
-
-	//todo om links har nested arrays skapa dropdowns
-
 	connectedCallback() {
 		let links = [];
 		try { links = JSON.parse(this.getAttribute("links") || "[]") }
@@ -13,7 +16,7 @@ class Navbar extends HTMLElement {
 		this.innerHTML = `
 			<style>
 				.navbar-toggler:focus {
-					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
+					box-shadow:  ${focusColor ? `0 0 0 0.20rem ${focusColor}` : "none"};
 				}
 				.btn-close:focus {
 					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
@@ -112,10 +115,15 @@ class Navbar extends HTMLElement {
 			</nav>
         `;
 
-		if (position.includes("sticky")) {
+
+		const compensateForStickyBehavior = () => {
 			document.querySelector("html").style.scrollPaddingTop = `${this.offsetHeight}px`;
+			document.querySelector("header")?.style?.setProperty("display", "contents");
 			document.querySelector(".navbar").style.top = "0";
-		};
+		}
+
+		if (position.includes("sticky")) compensateForStickyBehavior();
+		const addActiveClass = (el) => el.classList.add('active');
 
 		const normalizeUrl = url => {
 			let u = new URL(url, window.location.origin);
@@ -125,18 +133,11 @@ class Navbar extends HTMLElement {
 			return u.href;
 		};
 
-		const addActiveClass = (el) => el.classList.add('active');
-
 		const addActiveClassToParentDropdown = (el) => {
-			const parentDropdown = el.closest('.dropdown');
-			if (!parentDropdown) return;
+			if (!el.closest('.dropdown')) return;
 
-			const activeColor = getComputedStyle(this.querySelector('.active')).color
-
-			// parentDropdown.style.color = `color-mix(in srgb, ${activeColor} 70%, white 30%)`;
-			parentDropdown.classList.add("active")
+			el.closest('.dropdown').classList.add("active")
 		};
-
 
 		const updateActiveLink = () => {
 			const currentUrl = normalizeUrl(window.location.href);
@@ -181,13 +182,13 @@ class Navbar extends HTMLElement {
 				},
 				brand: {
 					"description": "Brand name displayed in the navbar & offcanvas.",
-					"type": "String",
+					"type": "string",
 					"example": "brand=\"My company name\"",
 					"default": "My company name"
 				},
 				position: {
 					"description": "Position of the navbar.",
-					"type": "String",
+					"type": "string",
 					"alternatives": [
 						"sticky-top",
 						"position-static",

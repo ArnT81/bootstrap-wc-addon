@@ -22,20 +22,30 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
-	<script rel="script" src="/components/Navbar.js"></script>
-	<script rel="script" src="/components/Button.js"></script>
-	<script rel="script" src="/components/Spinner.js"></script>
-	<script rel="script" src="/components/Toast.js"></script>
-	<script rel="script" src="/components/Select.js"></script>
+	<script rel="script" src="/components/bs-navbar.js"></script>
+	<script rel="script" src="/components/bs-button.js"></script>
+	<script rel="script" src="/components/bs-spinner.js"></script>
+	<script rel="script" src="/components/bs-toast.js"></script>
+	<script rel="script" src="/components/bs-select.js"></script>
 	<script rel="script" src="index.js"></script>
 
 	<link rel="stylesheet" href="css/style.min.css">
 </head>
 
 <body>
-	<bs-navbar brand="My company name" class="bg-primary" focus-color="green"
-		links='[{"href": "/", "label": "Home"}, {"Nested": [{"href": "nested.html", "label": "Nested"}, {"href": "#nested", "label": "Local Nested"}]}, {"href": "#top", "label": "Top"},{"href": "#about", "label": "About"}, {"href": "another.html", "label": "Another"}]'>
-	</bs-navbar>
+	<header>
+		<bs-navbar brand="My company name" class="bg-primary" focus-color="green"
+			links='[{"href": "/", "label": "Home"}, {"Nested": [{"href": "nested.html", "label": "Nested"}, {"href": "#nested", "label": "Local Nested"}]}, {"href": "#top", "label": "Top"},{"href": "#about", "label": "About"}, {"href": "another.html", "label": "Another"}]'>
+		</bs-navbar>
+
+
+
+		<div id="hero">
+			<img src="https://plus.unsplash.com/premium_photo-1754432777426-46d9027859cf?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				alt="">
+
+		</div>
+</header>
 
 
 	<br>
@@ -53,7 +63,7 @@
 			options='[{"label": "One", "value": "1"}, {"label": "Two", "value": 2}, {"label": "Three", "value": 3, "selected":true}]'></bs-select>
 		<br>
 
-		<input type="submit" value="send">
+		<bs-button type="submit" variant="primary" label="Send" size="lg" disabled>
 	</form>
 
 	<div id="about">
