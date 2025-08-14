@@ -51,10 +51,10 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 ---
 ## 📦 Installation
 
-**Via npm**
+<!-- **Via npm**
 ```bash
 npm install bootstrap-wc-addon
-```
+```-->
 
 **Via CDN (jsDelivr)**
 ```html
