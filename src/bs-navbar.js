@@ -1,4 +1,4 @@
-class Navbar extends HTMLElement {
+export class BsNavbar extends HTMLElement {
 	connectedCallback() {
 		let links = [];
 		const root = document.documentElement;
@@ -9,6 +9,14 @@ class Navbar extends HTMLElement {
 		const brand = this.getAttribute("brand") || ""
 		const focusColor = this.getAttribute("focus-color") || ""
 		const position = this.getAttribute("position") || "sticky-top";
+
+		let resolvedColor = focusColor;
+		const bsColor = getComputedStyle(document.documentElement)
+			.getPropertyValue(`--bs-${focusColor}`)
+			.trim();
+
+
+		if (bsColor) resolvedColor = bsColor;
 
 
 		this.innerHTML = `
@@ -25,10 +33,10 @@ class Navbar extends HTMLElement {
 					padding-inline: 16px;
 				}
 				.navbar-toggler:focus {
-					box-shadow:  ${focusColor ? `0 0 0 0.20rem ${focusColor}` : "none"};
+					box-shadow:  ${resolvedColor ? `0 0 0 0.20rem ${resolvedColor}` : "none"};
 				}
 				.btn-close:focus {
-					box-shadow:  ${focusColor ? `0 0 0 0.15rem ${focusColor}` : "none"};
+					box-shadow:  ${resolvedColor ? `0 0 0 0.15rem ${resolvedColor}` : "none"};
 				}
 				.dropdown-menu {
 					background-color: inherit;
@@ -60,7 +68,7 @@ class Navbar extends HTMLElement {
 				</button>
 
 				<div
-					class="offcanvas offcanvas-end show" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
+					class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
 					style="max-width: 85vw; background-color: inherit; "
 				>
 					<div class="offcanvas-header">
@@ -217,4 +225,4 @@ class Navbar extends HTMLElement {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-navbar", Navbar) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-navbar", BsNavbar) })

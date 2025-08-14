@@ -1,4 +1,4 @@
-class Hero extends HTMLElement {
+export class BsHero extends HTMLElement {
 	connectedCallback() {
 		const title = this.getAttribute('title') || '';
 		const subtitle = this.getAttribute('subtitle') || '';
@@ -92,4 +92,4 @@ class Hero extends HTMLElement {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => customElements.define('bs-hero', Hero));
+document.addEventListener('DOMContentLoaded', () => customElements.define('bs-hero', BsHero));

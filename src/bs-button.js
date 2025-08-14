@@ -1,5 +1,4 @@
-class Button extends HTMLElement {
-
+export class BsButton extends HTMLElement {
 	connectedCallback() {
 		const type = this.getAttribute('type') || 'button';
 		const variant = this.getAttribute('variant') || '';
@@ -24,7 +23,7 @@ class Button extends HTMLElement {
 	documentation() {
 		return {
 			"tag name": "bs-button",
-			description: "Bootstrap Button.",
+			description: "Bootstrap Bs.",
 			requirements: {
 				"bootstrap.min.css": "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr\" crossorigin=\"anonymous\">",
 				"bootstrap.bundle.min.js": "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>"
@@ -78,4 +77,4 @@ class Button extends HTMLElement {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-button", Button) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-button", BsButton) })

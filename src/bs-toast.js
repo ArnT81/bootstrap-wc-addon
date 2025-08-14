@@ -3,14 +3,12 @@ const icons = {
 	info: `<path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />`
 }
 
-
 const colors = {
 	warning: 'warning',
 	info: 'primary',
 }
 
-
-class Toast extends HTMLElement {
+export class BsToast extends HTMLElement {
 	connectedCallback() {
 		const title = this.getAttribute('title') || 'Titel saknas';
 		const text = this.getAttribute('text') || 'Text saknas';
@@ -136,4 +134,4 @@ class Toast extends HTMLElement {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => { customElements.define('bs-toast', Toast) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define('bs-toast', BsToast) })

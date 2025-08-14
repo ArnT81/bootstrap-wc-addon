@@ -1,4 +1,4 @@
-class Select extends HTMLElement {
+export class BsSelect extends HTMLElement {
 	connectedCallback() {
 		let options = [];
 		try { options = JSON.parse(this.getAttribute("options") || "[]") }
@@ -72,4 +72,4 @@ class Select extends HTMLElement {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-select", Select) })
+document.addEventListener('DOMContentLoaded', () => { customElements.define("bs-select", BsSelect) })

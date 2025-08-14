@@ -1,21 +1,7 @@
 :root {
-  --footer-height: 120px;
-  --primary-color: #FF6F00;
-  --secondary-color: #212121;
-  --complimentary-color: yellow;
   --navbar-height: 60px;
   --navbar-color: rgba(255, 255, 255, 0.6);
   --text-color: black;
-  --spacing: 16px;
-}
-
-html {
-  font-size: 16px;
-}
-
-body {
-  min-height: 100dvh;
-  min-width: 100vw;
 }
 
 .navbar {

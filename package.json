@@ -1,0 +1,54 @@
+{
+  "name": "bootstrap-wc-addon",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Anders Söderberg",
+  "description": "A set of native Web Components that wrap and extend Bootstrap's own components, bringing them to the Custom Elements standard.",
+  "type": "module",
+  "main": "dist/bootstrap-wc-addon.bundle.min.js",
+  "module": "dist/bootstrap-wc-addon.esm.js",
+  "style": "src/my-addon.css",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./dist/bootstrap-wc-addon.bundle.min.js"
+    },
+    "./bs-navbar": "./src/bs-navbar.js",
+    "./bs-button": "./src/bs-button.js",
+    "./bs-spinner": "./src/bs-spinner.js",
+    "./bs-toast": "./src/bs-toast.js",
+    "./bs-select": "./src/bs-select.js",
+    "./bs-hero": "./src/bs-hero.js"
+  },
+  "keywords": [
+    "bootstrap",
+    "css",
+    "addon",
+    "styling",
+    "web components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnT81/bootstrap-wc-addon.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "css",
+    "LICENSE",
+    "README.md"
+  ],
+  "bugs": {
+    "url": "https://github.com/ArnT81/bootstrap-wc-addon/issues"
+  },
+  "homepage": "https://github.com/ArnT81/bootstrap-wc-addon#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
