@@ -17,17 +17,38 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 ## Example
 [![Demo screenshot](assets/example.webp)](https://din-demosida.example.com)
 
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+	<meta charset="UTF-8">
+	<title>Bootstrap WC Addon Test</title>
+	<link rel="shortcut icon" href="#" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
+</head>
 
+<body>
+	<header>
+		<bs-navbar brand="My company name" focus-color="primary"
+			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link"}]'>
+		</bs-navbar>
+
+		<bs-hero id="top" title="Welcome!" subtitle="Explore our site"
+			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
+			textColor="light">
+		</bs-hero>
+	</header>
+</body>
+
+</html>
+```
 
 ---
-
-
-
-
-
-
-
 ## 📦 Installation
 
 **Via npm**
