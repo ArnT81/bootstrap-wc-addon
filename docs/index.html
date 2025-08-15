@@ -23,17 +23,74 @@
 
 <body>
 	<header>
-		<bs-navbar brand="My company name" focus-color="primary"
-			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link", "target": "_blank"}]'>
+		<bs-navbar brand="My company name" focus-color="primary" links='[
+			{"href": "#top", "label": "Top"},
+			{"Navbar": [
+			{"href": "#bs-navbar", "label": "Information"},
+			{"href": "#bs-navbar-example", "label": "Example"},
+			{"href": "#bs-navbar-attributes", "label": "Attributes"}]},
+
+
+			{"Hero": [
+			{"href": "#bs-hero", "label": "Information"},
+			{"href": "#bs-hero-example", "label": "Example"},
+			{"href": "#bs-hero-attributes", "label": "Attributes"}]}
+
+
+
+
+		]'>
 		</bs-navbar>
 
-		<bs-hero id="top" title="Welcome!" subtitle="Explore our site"
+		<bs-hero id="top" title="Under construction!"
 			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
 			textColor="light">
 		</bs-hero>
 	</header>
 
 	<main>
+		<section id="bs-navbar">
+			<article>
+				<h2>bs-navbar</h2>
+
+
+			</article>
+
+			<article id="bs-navbar-example">
+				<p>Example</p>
+
+
+			</article>
+
+			<article id="bs-navbar-attributes">
+				<p>Attributes</p>
+
+
+			</article>
+		</section>
+
+		<section id="bs-hero">
+			<article>
+				<h2>bs-hero</h2>
+
+
+			</article>
+
+			<article id="bs-hero-example">
+				<p>Example</p>
+
+
+			</article>
+
+			<article id="bs-hero-attributes">
+				<p>Attributes</p>
+
+
+			</article>
+		</section>
+
+
+
 
 	</main>
 
