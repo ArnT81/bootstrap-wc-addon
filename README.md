@@ -16,7 +16,7 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 
 ## Example
 
-[![Demo screenshot](assets/example.webp)](https://din-demosida.example.com)
+[![Demo screenshot](assets/example.webp)](https://arnt81.github.io/bootstrap-wc-addon)
 
 ```html
 <!DOCTYPE html>
