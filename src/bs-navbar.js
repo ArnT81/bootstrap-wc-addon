@@ -107,10 +107,11 @@ export class BsNavbar extends HTMLElement {
 											<a
 												class="nav-link ps-3"
 												href="${sub.href}"
+												target="${sub.target || ""}"
 												style="color: inherit;"
 											>
 											${sub.label}
-										</a>
+											</a>
 										</li>
 									`).join("")}
 								</ul>
@@ -119,7 +120,14 @@ export class BsNavbar extends HTMLElement {
 			}
 			return `
 							<li class="nav-item">
-								<a class="nav-link" href="${link.href}" style="color: inherit;">${link.label}</a>
+								<a
+									class="nav-link"
+									href="${link.href}"
+									target="${link.target || ""}"
+									style="color: inherit;"
+								>
+								${link.label}
+								</a>
 							</li>`}).join("")}
 						</ul>
 					</div>
@@ -188,7 +196,7 @@ export class BsNavbar extends HTMLElement {
 			attributes: {
 				links: {
 					"description": "Links to display in the \"offcanvas-body\"",
-					"type": "JSON array of link objects with \"href\" and \"label\".",
+					"type": "JSON array of link objects with \"href\", \"label\" & target if provided.",
 					"example": "links='[{\"href\": \"#home\", \"label\": \"Home\"}, {\"href\": \"#about\", \"label\": \"About\"}]'",
 					"default": "[]"
 				},

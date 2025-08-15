@@ -35,7 +35,7 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 <body>
 	<header>
 		<bs-navbar brand="My company name" focus-color="primary"
-			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link"}]'>
+			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link", "target": "_blank"}]'>
 		</bs-navbar>
 
 		<bs-hero id="top" title="Welcome!" subtitle="Explore our site"

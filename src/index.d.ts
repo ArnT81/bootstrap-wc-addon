@@ -6,6 +6,7 @@
 export interface NavbarLink {
 	href?: string;
 	label?: string;
+	target?: string;
 	[key: string]: any;
 }
 export type NavbarLinks = NavbarLink[];
