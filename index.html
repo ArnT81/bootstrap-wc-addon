@@ -20,10 +20,12 @@
 
 	<script type="module">
 		import '/src/bs-navbar.js';
-		import '/src/bs-hero.js';
+		import '/src/bs-carousel.js';
 		import '/src/bs-button.js';
 	</script>
+
 	<script rel="script" type="module" src="src/index.js"></script>
+	<script rel="script" type="module" src="test.js"></script>
 	<link rel="stylesheet" href="css/style.min.css">
 </head>
 
@@ -33,20 +35,15 @@
 			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link", "target": "_blank"}]'>
 		</bs-navbar>
 
-		<bs-hero id="top" title="Welcome!" subtitle="Explore our site"
-			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
-			textColor="light">
-		</bs-hero>
 	</header>
 
 	<main>
-		<form id="form">
-			<bs-select name="age" id="custom-select" class="mb-3 bg-primary text-white"
-				options='[{"label": "One", "value": "1"}, {"label": "Two", "value": 2}, {"label": "Three", "value": 3, "selected":true}]'></bs-select>
-			<br>
+		<bs-carousel autoplay controls indicators height="400px" class="carousel-fade carousel-dark" images='[
+					{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg", "alt":"road","caption":{"label":"label","content":"content"}},
+					{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
+					{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 200}]'>
+		</bs-carousel>
 
-			<bs-button type="submit" variant="primary" label="Send"></bs-button>
-		</form>
 
 		<div id="middle">
 			<p>Middle</p>

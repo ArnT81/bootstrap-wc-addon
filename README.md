@@ -3,7 +3,7 @@
 **Bootstrap WC Addon** is a set of native **Web Components** that wrap and extend Bootstrap's own components, bringing them to the Custom Elements standard.
 This lets you use familiar Bootstrap styles and behaviors inside HTML tags like `<bs-button>` or `<bs-modal>` — without manually writing all the Bootstrap markup.
 
----
+<br>
 
 ## ✨ Features
 - ✅ Uses **Bootstrap’s official components** under the hood
@@ -12,9 +12,10 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 - ✅ Extensible styling via both Bootstrap classes and custom CSS
 - ✅ Compatible with **Bootstrap 5**
 
----
+<br>
 
 ## Example
+
 [![Demo screenshot](assets/example.webp)](https://din-demosida.example.com)
 
 ```html
@@ -48,7 +49,8 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 </html>
 ```
 
----
+<br>
+
 ## 📦 Installation
 
 <!-- **Via npm**
@@ -71,13 +73,27 @@ npm install bootstrap-wc-addon
 
 ```
 
----
+<br>
 
 ## 🚀 Usage Example
+
+
+
 ```html
 <bs-button variant="primary">Click me</bs-button>
 ```
 
+<br>
+
+## 📖 Documentation locally
+```js
+document.addEventListener("DOMContentLoaded", () => {
+	const selectInstance = document.createElement('bs-navbar');
+	console.log(selectInstance.documentation());
+})
+```
+
+<br>
 
 ## 📄 License
 MIT © 2025 Anders Söderberg

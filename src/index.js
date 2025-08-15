@@ -11,6 +11,7 @@ import './bs-spinner.js';
 import './bs-toast.js';
 import './bs-select.js';
 import './bs-hero.js';
+import './bs-carousel.js';
 
 // Ingen export krävs om komponenterna själva gör customElements.define()
 // Men du *kan* exportera dem om du vill att folk ska kunna göra egna instanser:
@@ -20,3 +21,4 @@ export { BsSpinner } from './bs-spinner.js';
 export { BsToast } from './bs-toast.js';
 export { BsSelect } from './bs-select.js';
 export { BsHero } from './bs-hero.js';
+export { BsCarousel } from './bs-carousel.js';

@@ -13,9 +13,6 @@ export type NavbarLinks = NavbarLink[];
 
 
 
-
-
-
 // ===============================
 //  BsNavbar
 // ===============================
@@ -110,6 +107,22 @@ export class BsHero extends HTMLElement {
 	documentation(): Record<string, any>;
 }
 
+export interface BsCarouselAttributes {
+	images?: string;
+	autoplay?: boolean;
+	indicators?: boolean;
+	controls?: boolean;
+	height?: string;
+	width?: string;
+	class?: string;
+}
+
+export class BsCarousel extends HTMLElement {
+	connectedCallback(): void;
+	documentation(): Record<string, any>;
+}
+
+
 // ===============================
 //  Paketexporter
 // ===============================
@@ -119,7 +132,8 @@ export {
 	BsSpinner,
 	BsToast,
 	BsSelect,
-	BsHero
+	BsHero,
+	BsCarousel
 };
 
 // ===============================
@@ -133,5 +147,6 @@ declare global {
 		"bs-toast": BsToast;
 		"bs-select": BsSelect;
 		"bs-hero": BsHero;
+		"bs-carousel": BsCarousel;
 	}
 }
