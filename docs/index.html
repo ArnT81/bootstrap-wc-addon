@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>bootstrap-wc-addon documantation</title>
+	<title>Bootstrap WC Addon documantation</title>
 	<meta name="Author" content="Anders Söderberg">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Not changed yet">
@@ -17,25 +17,28 @@
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js?v=1.0.3"></script> -->
 
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@1.0.3/dist/bootstrap-wc-addon.bundle.min.js"></script> -->
-
-	<!-- <script type="module">
-		import '../src/bs-button.js';
-	</script> -->
+	<script type="module">
+		// import '../src/bs-button.js';
+		// import '../src/bs-carousel.js';
+	</script>
 	<script rel="script" src="index.js"></script>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 	<header>
-		<bs-navbar brand="My company name" focus-color="red" links='[
+		<bs-navbar brand="Bootstrap WC Addon" focus-color="red" links='[
 			{"href": "#top", "label": "Top"},
 			{"Button": [
 			{"href": "#bs-button", "label": "Information"},
 			{"href": "#bs-button-example", "label": "Example"},
 			{"href": "#bs-button-attributes", "label": "Attributes"}
+			]},
+			{"Carousel": [
+			{"href": "#bs-carousel", "label": "Information"},
+			{"href": "#bs-carousel-example", "label": "Example"},
+			{"href": "#bs-carousel-attributes", "label": "Attributes"}
 			]}
 		]'>
 		</bs-navbar>
@@ -149,88 +152,116 @@
 			</article>
 		</section>
 
+		<section id="bs-carousel" class="p-2 d-flex flex-column gap-3">
+			<article>
+				<h2>Carousel</h2>
+				<p><b>tag name:</b> bs-carousel</p>
+			</article>
 
+			<article id="bs-carousel-example" class="d-flex flex-column gap-3">
+				<div>
+					<h3>Example</h3>
+
+					<bs-carousel autoplay controls indicators height="200px" class="carousel-fade" images='[
+						{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg","alt":"road","caption":{"label":"label","content":"content"}},
+						{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
+						{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 500}
+						]'>
+					</bs-carousel>
+				</div>
+
+				<div>
+					<h3>Code</h3>
+
+					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
+						<pre class="text-light w-100"><code>&lt;bs-carousel autoplay controls indicators height="200px" class="carousel-fade" images='[
+	{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg","alt":"road","caption":{"label":"label","content":"content"}},
+	{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
+	{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 500}
+	]'&gt;
+&lt;/bs-carousel&gt;</code></pre>
+
+						<bs-button variant="light" class="copy-btn" size="sm">
+							Copy
+						</bs-button>
+					</div>
+				</div>
+
+			</article>
+
+			<article id="bs-carousel-attributes">
+				<h3>Attributes</h3>
+
+				<table class="table table-bordered table-light">
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Alternatives</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>images</td>
+							<td>string (JSON)</td>
+							<td>JSON array of image objects, optionally including captions.</td>
+							<td></td>
+							<td>[]</td>
+						</tr>
+						<tr>
+							<td>autoplay</td>
+							<td>boolean</td>
+							<td>Enables automatic sliding (Bootstrap `data-bs-ride`).</td>
+							<td>attribute without value</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>indicators</td>
+							<td>boolean</td>
+							<td>Show or hide the indicator dots.</td>
+							<td>attribute without value</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>controls</td>
+							<td>boolean</td>
+							<td>Show or hide the previous/next controls.</td>
+							<td>attribute without value</td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>height</td>
+							<td>string</td>
+							<td>CSS height applied to carousel images.</td>
+							<td>any valid CSS size (px, %, em, etc.)</td>
+							<td>100%</td>
+						</tr>
+						<tr>
+							<td>width</td>
+							<td>string</td>
+							<td>CSS width applied to the carousel container.</td>
+							<td>any valid CSS size or percentage</td>
+							<td>100%</td>
+						</tr>
+						<tr>
+							<td>class</td>
+							<td>string</td>
+							<td>Extra CSS classes to add to the carousel container.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
 
 		<div style="height: 500px;"></div>
 
-
-
-		<!-- <section id="bs-navbar">
-			<article>
-				<h2>Navbar</h2>
-
-				<p>tag name: bs-navbar</p>
-
-
-
-
-			</article>
-
-			<article id="bs-navbar-example">
-				<p>Example</p>
-
-			</article>
-
-			<article id="bs-navbar-attributes">
-				<p>Attributes</p>
-
-
-			</article>
-		</section>
-
-		<section id="bs-hero">
-			<article>
-				<h2>bs-hero</h2>
-
-				<h3 class="text-warning">OBS!</h3>
-				<p>uses class "active" </p>
-			</article>
-
-			<article id="bs-hero-example">
-				<p>Example</p>
-
-
-			</article>
-
-			<article id="bs-hero-attributes">
-				<p>Attributes</p>
-
-
-			</article>
-		</section>
-
-		<section id="bs-spinner">
-			<article>
-				<h2>bs-spinner</h2>
-
-
-			</article>
-
-			<article id="bs-spinner-example">
-				<p>Example</p>
-
-
-			</article>
-
-			<article id="bs-spinner-attributes">
-				<p>Attributes</p>
-
-
-			</article>
-		</section> -->
-
-		<!-- <section id="bs-carousel">
-			<bs-carousel autoplay controls indicators height="400px" class="carousel-fade carousel-dark" images='[
-					{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg", "alt":"road","caption":{"label":"label","content":"content"}},
-					{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
-					{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 200}]'>
-			</bs-carousel>
-		</section> -->
 	</main>
 
-	<footer>
 
-	</footer>
 </body>
 
 </html>
