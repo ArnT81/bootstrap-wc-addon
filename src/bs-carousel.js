@@ -14,14 +14,10 @@ export class BsCarousel extends HTMLElement {
 
 		this.innerHTML = `
 			<style>
-				.carousel {
-					width: ${width};
-				}
 				.carousel-caption h5, .carousel-caption p {
 					text-shadow: 0 0 2px black, 0 0 2px black, 0 0 8px black, 0 0 12px black, 0 0 12px black;
 				}
 				.carousel-inner img {
-					height:	${height};
 					width: 100%;
 					object-fit: cover;
 				}
@@ -29,6 +25,7 @@ export class BsCarousel extends HTMLElement {
 
 			<div
 				id="carouselExampleIndicators"
+				style="width: ${width};
 				class="carousel slide ${extraClasses}"
 				data-bs-ride="${autoplay}"
 			>
@@ -52,6 +49,7 @@ export class BsCarousel extends HTMLElement {
 							data-bs-interval="${image.interval || ""}"
 						>
 							<img
+								style="height: ${height};"
 								src="${image.src}"
 								alt="${image.alt}"
 								class="d-block"
