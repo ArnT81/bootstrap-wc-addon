@@ -1,5 +1,7 @@
 function copyCode(btn) {
-	const code = btn.previousElementSibling.innerText;
+	const code = btn.previousElementSibling?.innerText;
+	if (!code) return;
+	console.log(code);
 
 	navigator.clipboard.writeText(code).then(() => {
 		// manipulates the button inside the web component

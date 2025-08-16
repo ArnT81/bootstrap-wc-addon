@@ -20,6 +20,24 @@ html {
 
 main {
 	padding: 32px 16px 64px 16px;
+
+	p:has(+ ul) {
+		margin-bottom: 0.25rem;
+	}
+}
+
+hr {
+	border: none;
+	height: 1.5px;
+	background: linear-gradient(to right, transparent, #707070, transparent);
+	// background: linear-gradient(to right, transparent, #707070, rgb(255, 255, 255, .5), #707070, transparent);
+}
+
+.constrain-text {
+	max-width: 80ch;
+	text-wrap: pretty;
+	overflow-wrap: break-word;
+	word-break: break-word;
 }
 
 ::selection {
