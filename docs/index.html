@@ -58,7 +58,8 @@
 		</bs-navbar>
 
 		<bs-hero id="top" title="Under construction!" subtitle="Some features may yet be buggy"
-			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" textColor="light">
+			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
+			textColor="light">
 		</bs-hero>
 	</header>
 
@@ -495,6 +496,110 @@
 				</table>
 			</article>
 		</section>
+
+		<section id="bs-select" class="p-2 d-flex flex-column gap-3">
+			<article>
+				<h2>Select</h2>
+				<p><b>tag name:</b> bs-select</p>
+			</article>
+
+			<article id="bs-select-example" class="d-flex flex-column gap-3">
+				<div>
+					<h3>Example</h3>
+
+					<form id="testForm" action="">
+						<bs-select name="test" id="custom-select" class="mb-3 bg-primary text-white" options='[{"label": "One", "value": "1"}, {"label": "Two", "value": 2}, {"label": "Three", "value": 3,
+							"selected":true}]'>
+						</bs-select>
+
+						<bs-button type="reset" variant="secondary">Reset</bs-button>
+
+						<bs-button type="submit" variant="primary">Test</bs-button>
+					</form>
+
+					<script>
+						const form = document.getElementById('testForm');
+
+						form.addEventListener('submit', function (e) {
+							e.preventDefault();
+
+							const body = Object.fromEntries(new FormData(e.target));
+
+							alert(JSON.stringify(body));
+						});
+					</script>
+				</div>
+
+				<div>
+					<h3>Code</h3>
+
+					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
+						<pre class="text-light w-100"><code>&lt;bs-select name="test" id="custom-select" class="mb-3 bg-primary text-white"
+	options='[{"label": "One", "value": "1"}, {"label": "Two", "value": 2}, {"label": "Three", "value": 3,
+	"selected":true}]'&gt;
+&lt;/bs-select&gt;</code></pre>
+						<bs-button variant="light" class="copy-btn" size="sm">
+							Copy
+						</bs-button>
+					</div>
+				</div>
+			</article>
+
+			<article id="bs-select-attributes">
+				<h3>Attributes</h3>
+
+				<table class="table table-bordered table-light">
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Alternatives</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>options</td>
+							<td>JSON array</td>
+							<td>Array of option objects. Each object can have `value`, `label`, and optional `selected`
+								boolean.</td>
+							<td></td>
+							<td>[]</td>
+						</tr>
+						<tr>
+							<td>disabled</td>
+							<td>Boolean (presence-based)</td>
+							<td>Disable the select element if present.</td>
+							<td></td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>id</td>
+							<td>string</td>
+							<td>HTML id attribute for the select element.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>string</td>
+							<td>HTML name attribute for the select element, used in forms.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>class</td>
+							<td>string</td>
+							<td>Extra CSS classes to apply to the select element.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
 
 		<div style="height: 500px;"></div>
 
