@@ -4,9 +4,9 @@ export class BsButton extends HTMLElement {
 		const variant = this.getAttribute('variant') || '';
 		const size = this.getAttribute('size') || '';
 		const label = this.getAttribute('label') || this.innerHTML.trim();
-		const disabled = this.hasAttribute("disabled");
+		const disabled = this.hasAttribute('disabled');
 		const extraClasses = this.getAttribute('class') || '';
-		const id = this.getAttribute("id") || "";
+		const id = this.getAttribute('id') || '';
 
 		this.innerHTML = `
 			<button id="${id}" type="${type}" class="btn btn-${variant} btn-${size} ${extraClasses}" ${disabled}>

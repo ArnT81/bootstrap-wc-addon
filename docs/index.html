@@ -12,33 +12,31 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff;">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="shortcut icon" href="#" />
-	<link rel="preload" href="https://www.anderssöderberg.se/fonts/?Ubuntu" as="font" type="font/woff2"
-		crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js?v=1.0.3"></script> -->
+
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@1.0.3/dist/bootstrap-wc-addon.bundle.min.js"></script> -->
+
+	<!-- <script type="module">
+		import '../src/bs-button.js';
+	</script> -->
+	<script rel="script" src="index.js"></script>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 	<header>
-		<bs-navbar brand="My company name" focus-color="primary" links='[
+		<bs-navbar brand="My company name" focus-color="red" links='[
 			{"href": "#top", "label": "Top"},
-			{"Navbar": [
-			{"href": "#bs-navbar", "label": "Information"},
-			{"href": "#bs-navbar-example", "label": "Example"},
-			{"href": "#bs-navbar-attributes", "label": "Attributes"}]},
-
-
-			{"Hero": [
-			{"href": "#bs-hero", "label": "Information"},
-			{"href": "#bs-hero-example", "label": "Example"},
-			{"href": "#bs-hero-attributes", "label": "Attributes"}]}
-
-
-
-
+			{"Button": [
+			{"href": "#bs-button", "label": "Information"},
+			{"href": "#bs-button-example", "label": "Example"},
+			{"href": "#bs-button-attributes", "label": "Attributes"}
+			]}
 		]'>
 		</bs-navbar>
 
@@ -48,17 +46,128 @@
 		</bs-hero>
 	</header>
 
-	<main>
-		<section id="bs-navbar">
+	<main class="p-2 d-flex flex-column gap-5">
+		<section id="bs-button" class="p-2 d-flex flex-column gap-3">
 			<article>
-				<h2>bs-navbar</h2>
+				<h2>Button</h2>
+				<p><b>tag name:</b> bs-button</p>
+			</article>
+
+			<article id="bs-button-example" class="d-flex flex-column gap-3">
+				<div>
+					<h3>Example</h3>
+
+					<bs-button variant="primary">Click me</bs-button>
+				</div>
+
+				<div>
+					<h3>Code</h3>
+
+					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
+						<pre
+							class="text-light w-100"><code>&lt;bs-button variant="primary"&gt;Click me&lt;/bs-button&gt;</code></pre>
+
+						<bs-button variant="light" class="copy-btn" size="sm">
+							Copy
+						</bs-button>
+					</div>
+				</div>
+			</article>
+
+			<article id="bs-button-attributes">
+				<h3>Attributes</h3>
+
+				<table class="table table-bordered table-light">
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Alternatives</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>class</td>
+							<td>string</td>
+							<td>HTML class attribute.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>disabled</td>
+							<td>boolean</td>
+							<td>Disables button.</td>
+							<td></td>
+							<td>false</td>
+						</tr>
+
+						<tr>
+							<td>id</td>
+							<td>string</td>
+							<td>HTML id attribute.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>label</td>
+							<td>string</td>
+							<td>Button text.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>size</td>
+							<td>string</td>
+							<td>Bootstrap classes</td>
+							<td>"sm", "lg"</td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>type</td>
+							<td>string</td>
+							<td>HTML button type.</td>
+							<td>"button", "submit", "reset"</td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>variant</td>
+							<td>string</td>
+							<td>Bootstrap classes.</td>
+							<td>"primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"
+							</td>
+							<td>""</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
+
+
+		<div style="height: 500px;"></div>
+
+
+
+		<!-- <section id="bs-navbar">
+			<article>
+				<h2>Navbar</h2>
+
+				<p>tag name: bs-navbar</p>
+
+
 
 
 			</article>
 
 			<article id="bs-navbar-example">
 				<p>Example</p>
-
 
 			</article>
 
@@ -73,7 +182,8 @@
 			<article>
 				<h2>bs-hero</h2>
 
-
+				<h3 class="text-warning">OBS!</h3>
+				<p>uses class "active" </p>
 			</article>
 
 			<article id="bs-hero-example">
@@ -89,9 +199,33 @@
 			</article>
 		</section>
 
+		<section id="bs-spinner">
+			<article>
+				<h2>bs-spinner</h2>
 
 
+			</article>
 
+			<article id="bs-spinner-example">
+				<p>Example</p>
+
+
+			</article>
+
+			<article id="bs-spinner-attributes">
+				<p>Attributes</p>
+
+
+			</article>
+		</section> -->
+
+		<!-- <section id="bs-carousel">
+			<bs-carousel autoplay controls indicators height="400px" class="carousel-fade carousel-dark" images='[
+					{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg", "alt":"road","caption":{"label":"label","content":"content"}},
+					{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
+					{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 200}]'>
+			</bs-carousel>
+		</section> -->
 	</main>
 
 	<footer>
