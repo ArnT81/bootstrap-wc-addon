@@ -1,13 +1,14 @@
 export class BsHero extends HTMLElement {
 	connectedCallback() {
+		let mediaHtml = '';
 		const title = this.getAttribute('title') || '';
 		const subtitle = this.getAttribute('subtitle') || '';
 		const background = this.getAttribute('background') || '';
 		const textColor = this.getAttribute('text-color') || 'light';
 		const extraClasses = this.getAttribute('class') || '';
-
 		const navHeight = document.querySelector("nav")?.clientHeight || 0;
-		let mediaHtml = '';
+		const sectionHeight = this.getAttribute('height') || `calc(100vh - ${navHeight}px)`;
+
 
 		if (background.endsWith('.mp4')) {
 			// Video
@@ -27,7 +28,7 @@ export class BsHero extends HTMLElement {
 		}
 
 		this.innerHTML = `
-			<section id="hero" class="position-relative d-flex flex-column justify-content-center align-items-center text-${textColor} ${extraClasses}" style="height: calc(100vh - ${navHeight}px); overflow: hidden;">
+			<section id="hero" class="position-relative d-flex flex-column justify-content-center align-items-center text-${textColor} ${extraClasses}" style="height: ${sectionHeight};); overflow: hidden;">
 				${mediaHtml}
 				<div class="position-relative text-center">
 					${title ? `<h1 class="display-1">${title}</h1>` : ''}
@@ -71,6 +72,11 @@ export class BsHero extends HTMLElement {
 					"description": "Additional CSS classes to apply to the hero container.",
 					"type": "string",
 					"default": ""
+				},
+				height: {
+					"description": "Height of hero.",
+					"type": "string",
+					"default": "100vh - nav height"
 				}
 			},
 			examples: [
