@@ -4,11 +4,12 @@ export class BsButton extends HTMLElement {
 		const variant = this.getAttribute('variant') || '';
 		const size = this.getAttribute('size') || '';
 		const label = this.getAttribute('label') || this.innerHTML.trim();
-		const disabled = this.hasAttribute('disabled') ? 'disabled' : '';
-
+		const disabled = this.hasAttribute("disabled");
+		const extraClasses = this.getAttribute('class') || '';
+		const id = this.getAttribute("id") || "";
 
 		this.innerHTML = `
-			<button type="${type}" class="btn btn-${variant} btn-${size}" ${disabled}>
+			<button id="${id}" type="${type}" class="btn btn-${variant} btn-${size} ${extraClasses}" ${disabled}>
 				${label}
 			</button>
 		`;
@@ -51,7 +52,7 @@ export class BsButton extends HTMLElement {
 						"link"
 					],
 					"example": "<bs-button type=\"submit\" variant=\"primary\" label=\"Send\" size=\"lg\" disabled>",
-					"default": "button"
+					"default": ""
 				},
 				size: {
 					"description": "Larger/smaller button.",
@@ -71,6 +72,18 @@ export class BsButton extends HTMLElement {
 					"type": "boolean",
 					"example": "<bs-button type=\"submit\" variant=\"primary\" label=\"Send\" size=\"lg\" disabled>",
 					"default": false
+				},
+				id: {
+					"description": "Specifies the HTML id attribute of the button. Useful for targeting with JavaScript or CSS.",
+					"type": "string",
+					"example": "<bs-button id=\"myButton\" variant=\"primary\">Click me</bs-button>",
+					"default": ""
+				},
+				class: {
+					"description": "Extra CSS classes to apply to the button. Allows custom styling on top of Bootstrap classes.",
+					"type": "string",
+					"example": "<bs-button class=\"my-custom-class\" variant=\"secondary\">Click me</bs-button>",
+					"default": ""
 				}
 			}
 		}
