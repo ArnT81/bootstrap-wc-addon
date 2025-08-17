@@ -447,31 +447,25 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 				<p>
 					<b>Description:</b> bs-navbar is a responsive navigation bar component that automatically manages
 					the active state of its links. When a user clicks a link or scrolls through the page, the
-					corresponding link is highlighted with the active class. This is achieved using the
-					IntersectionObserver API, which detects which section of the page is currently in view..
+					corresponding link is highlighted with the "active" class. This is achieved using the
+					IntersectionObserver API, which detects which section of the page is currently in view.
 				</p>
 
 				<p><b>Key Features</b></p>
+
 				<ul>
-					<li>Automatic active class assignment on click or scroll.</li>
-					<li>Automatic handles scroll-padding-top if navbar if position is sticky & height is altered.</li>
+					<li>Automatically adds class "active" on click or scroll.</li>
+					<li>Automatically handles scroll-padding-top if navbar height is altered.</li>
 					<li>Smooth section tracking using IntersectionObserver.</li>
 					<li>Fully customizable via CSS variables.</li>
 				</ul>
-
-				<p>
-					<b class="text-warning">OBS!!</b>
-
-					A key part of the calculations relies on the following constant:
-				</p>
-
 			</article>
 
 			<article id="bs-navbar-example" class="d-flex flex-column gap-3">
 				<div>
 					<h3>Example (image)</h3>
 
-					<img src="media/navbar.webp" alt="navbar" width="100%">
+					<img src="media/navbar.webp" alt="navbar" width="100%" loading="lazy">
 				</div>
 
 				<div>
