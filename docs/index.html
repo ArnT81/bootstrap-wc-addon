@@ -33,7 +33,7 @@
 
 <body>
 	<!-- <header> -->
-		<bs-navbar brand="Bootstrap WC Addon" focus-color="red" links='[
+	<bs-navbar brand="Bootstrap WC Addon" focus-color="red" links='[
 	{"href": "#top", "label": "Top"},
 	{"href": "#introduction", "label": "Introduction"},
 			{"Button": [
@@ -62,7 +62,7 @@
 			{"href": "#bs-select-attributes", "label": "Attributes"}
 			]}
 			]'>
-		</bs-navbar>
+	</bs-navbar>
 	<!-- </header> -->
 
 	<!--
@@ -110,9 +110,27 @@
 				<li>Flexible enough to integrate with any frontend stack without extra configuration</li>
 			</ul>
 
-			<p>👉 In short: <b>All the power of Bootstrap, with the convenience of custom HTML tags, and no Shadow DOM
+			<p class="mb-4">👉 In short: <b>All the power of Bootstrap, with the convenience of custom HTML tags, and no
+					Shadow DOM
 					restrictions.</b>
 			</p>
+
+			<p>❗<b>Notice!</b>
+				To modify web components you need to target the node inside the component. Here is an example for
+				&lt;bs-button&gt;.
+			</p>
+
+			<div class="bg-light rounded p-2">
+				<pre class="text-dark">
+const <span class="text-primary">exampleBtn</span> = document.getElementById('example')
+const internalBtn = <span class="text-primary">exampleBtn</span>.querySelector('button');
+
+console.log(exampleBtn);	&lt;bs-button id="example" variant="primary"&gt;&lt;/bs-button&gt;
+console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " type="button" false=""&gt;
+</pre>
+			</div>
+
+
 		</section>
 
 		<section id="bs-button" class="p-2 d-flex flex-column gap-3">
@@ -125,7 +143,7 @@
 				<div>
 					<h3>Example</h3>
 
-					<bs-button variant="primary">Click me</bs-button>
+					<bs-button id="example" variant="primary">Click me</bs-button>
 				</div>
 
 				<div>
@@ -133,7 +151,7 @@
 
 					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
 						<pre
-							class="text-light w-100"><code>&lt;bs-button variant="primary"&gt;Click me&lt;/bs-button&gt;</code></pre>
+							class="text-light w-100"><code>&lt;bs-button id="example" variant="primary"&gt;Click me&lt;/bs-button&gt;</code></pre>
 
 						<bs-button variant="light" class="copy-btn" size="sm">
 							Copy
