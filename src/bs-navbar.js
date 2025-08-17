@@ -136,6 +136,57 @@ export class BsNavbar extends HTMLElement {
         `;
 
 
+		const updateActiveLinkOnScroll = () => {
+			const navLinks = document.querySelectorAll("nav a[href^='#']:not([href='#'])");
+
+			const targets = Array.from(navLinks)
+				.map(link => document.querySelector(link.getAttribute("href")))
+				.filter(el => el !== null);
+
+			const setActive = () => {
+				let topMost = null;
+				let minTop = window.innerHeight;
+
+				targets.forEach(target => {
+					const rect = target.getBoundingClientRect();
+
+					if (rect.top >= 0 && rect.top < minTop) {
+						// closest to the top but still in the viewport
+						minTop = rect.top;
+						topMost = target;
+					}
+				});
+
+				// if nothing is found in viewport → take the last one above
+				if (!topMost) {
+					const above = targets.filter(t => t.getBoundingClientRect().top < 0);
+					if (above.length > 0) {
+						topMost = above[above.length - 1];
+					}
+				}
+
+				if (topMost) {
+					document.querySelectorAll("nav .active").forEach(el => el.classList.remove("active"));
+					const activeLink = document.querySelector(`nav a[href="#${topMost.id}"]`);
+					if (activeLink) {
+						addActiveClass(activeLink);
+						addActiveClassToParentDropdown(activeLink);
+					}
+				}
+			};
+
+			const observer = new IntersectionObserver(() => {
+				setActive(); // recalculate every time IO triggers
+			}, {
+				threshold: [0, 0.1, 0.5, 1], // more triggers
+			});
+
+			targets.forEach(target => observer.observe(target));
+
+			// run once immediately
+			setActive();
+		};
+
 		const compensateForStickyBehavior = () => {
 			document.querySelector("html").style.scrollPaddingTop = `${this.offsetHeight}px`;
 			document.querySelector("header")?.style?.setProperty("display", "contents");
@@ -177,11 +228,11 @@ export class BsNavbar extends HTMLElement {
 			});
 		};
 
-		// Körs när komponenten laddas
+		// On load
 		updateActiveLink();
-		// document.addEventListener("DOMContentLoaded", updateActiveLink);
+		updateActiveLinkOnScroll();
 
-		// Single-page navigering
+		// Single-page navigation
 		window.addEventListener("hashchange", updateActiveLink);
 	}
 
