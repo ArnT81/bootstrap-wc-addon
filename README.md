@@ -14,9 +14,10 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 
 <br>
 
-## Example
+## Quick Example or click the image for more
 
-[![Demo screenshot](assets/example.webp)](https://arnt81.github.io/bootstrap-wc-addon)
+[![Demo screenshot](assets/example.webp)](https://arnt81.github.io/bootstrap-wc-addon "Open demo site")
+
 
 ```html
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ This lets you use familiar Bootstrap styles and behaviors inside HTML tags like 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/dist/bootstrap-wc-addon.bundle.min.js"></script>
 </head>
 
 <body>
@@ -62,7 +63,7 @@ npm install bootstrap-wc-addon
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/dist/bootstrap-wc-addon.bundle.min.js"></script>
 ```
 
 **Note**: Bootstrap 5 is required. Include it before this addon:
@@ -85,7 +86,12 @@ npm install bootstrap-wc-addon
 
 <br>
 
-## 📖 Documentation locally
+## 🌐 Demo site!
+[Demo site!](https://arnt81.github.io/bootstrap-wc-addon/)
+
+<br>
+
+## 📖 Documentation from your own js
 ```js
 document.addEventListener("DOMContentLoaded", () => {
 	const selectInstance = document.createElement('bs-navbar');
