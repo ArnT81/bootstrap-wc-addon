@@ -16,24 +16,26 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@1.0.6/dist/bootstrap-wc-addon.bundle.min.js?v=1.0.6"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/dist/bootstrap-wc-addon.bundle.min.js"></script> -->
 
-	<!-- <script type="module">
+	<script type="module">
 		import '../src/bs-button.js';
 		import '../src/bs-carousel.js';
 		import '../src/bs-hero.js';
 		import '../src/bs-navbar.js';
-	</script> -->
+		import '../src/bs-select.js';
+		import '../src/bs-spinner.js';
+		import '../src/bs-toast.js';
+	</script>
 	<script rel="script" src="index.js"></script>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-	<header>
+	<!-- <header> -->
 		<bs-navbar brand="Bootstrap WC Addon" focus-color="red" links='[
-			{"href": "#top", "label": "Top"},
-			{"href": "#introduction", "label": "Introduction"},
+	{"href": "#top", "label": "Top"},
+	{"href": "#introduction", "label": "Introduction"},
 			{"Button": [
 			{"href": "#bs-button", "label": "Introduction"},
 			{"href": "#bs-button-example", "label": "Example"},
@@ -59,14 +61,25 @@
 			{"href": "#bs-select-example", "label": "Example"},
 			{"href": "#bs-select-attributes", "label": "Attributes"}
 			]}
-		]'>
+			]'>
 		</bs-navbar>
+	<!-- </header> -->
 
-		<bs-hero id="top" title="Under construction!" subtitle="Some features may yet be buggy"
-			background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
-			textColor="light">
-		</bs-hero>
-	</header>
+	<!--
+	"sticky-top", V
+	"position-static", V
+	"position-relative", V
+	"position-absolute",
+	"position-fixed",
+	"position-sticky", WRONG + woks bad (offcanvas behind hero)
+	"fixed-top", WRONG
+	"fixed-bottom"
+	-->
+
+	<bs-hero id="top" title="Under construction!" subtitle="Some features may yet be buggy"
+		background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" textColor="light">
+	</bs-hero>
+
 
 	<main class="d-flex flex-column gap-5">
 		<section id="introduction" class="bg-dark text-light px-2 py-4">
@@ -93,7 +106,7 @@
 			<ul class="ps-4">
 				<li>Custom elements (bs-navbar, bs-hero, bs-carousel, etc.)</li>
 				<li>Simple declarative attributes (e.g. title, background, variant)</li>
-				<li>Compatible with <b>Bootstrap 5’s CSS and JavaScript</b></li>
+				<li>Compatible with <b>Bootstrap 5's CSS and JavaScript</b></li>
 				<li>Flexible enough to integrate with any frontend stack without extra configuration</li>
 			</ul>
 
@@ -412,6 +425,28 @@
 			<article>
 				<h2>Navbar</h2>
 				<p><b>tag name:</b> bs-navbar</p>
+
+				<p>
+					<b>Description:</b> bs-navbar is a responsive navigation bar component that automatically manages
+					the active state of its links. When a user clicks a link or scrolls through the page, the
+					corresponding link is highlighted with the active class. This is achieved using the
+					IntersectionObserver API, which detects which section of the page is currently in view..
+				</p>
+
+				<p><b>Key Features</b></p>
+				<ul>
+					<li>Automatic active class assignment on click or scroll.</li>
+					<li>Automatic handles scroll-padding-top if navbar if position is sticky & height is altered.</li>
+					<li>Smooth section tracking using IntersectionObserver.</li>
+					<li>Fully customizable via CSS variables.</li>
+				</ul>
+
+				<p>
+					<b class="text-warning">OBS!!</b>
+
+					A key part of the calculations relies on the following constant:
+				</p>
+
 			</article>
 
 			<article id="bs-navbar-example" class="d-flex flex-column gap-3">
@@ -450,53 +485,43 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>title</td>
+							<td>brand</td>
 							<td>string</td>
 							<td>Main headline text displayed in the navbar.</td>
 							<td></td>
-							<td>""</td>
+							<td>"Bootstrap WC Addon"</td>
 						</tr>
+
 						<tr>
-							<td>subtitle</td>
-							<td>string</td>
-							<td>Optional subheadline text displayed below the title.</td>
-							<td></td>
-							<td>""</td>
-						</tr>
-						<tr>
-							<td>background</td>
-							<td>string</td>
-							<td>URL of the background media. If it ends with ".mp4", it will render as a looping video.
-								Otherwise, it
-								will be treated as an image URL.</td>
-							<td></td>
-							<td>""</td>
-						</tr>
-						<tr>
-							<td>text-color</td>
-							<td>string</td>
-							<td>Text color applied to title and subtitle. Uses Bootstrap text color classes.</td>
-							<td>
-								"light", "dark", "primary", "secondary", "success", "danger", "warning", "info", "body",
-								"muted",
-								"white"
+							<td>links</td>
+							<td>JSON array</td>
+							<td>Array of link objects. Each object must include `href` and `label` for single links, or
+								a key-value pair for
+								dropdown menus where the key is the title and the value is an array of link objects.
 							</td>
-							<td>"light"</td>
+							<td></td>
+							<td>[]</td>
 						</tr>
+
 						<tr>
-							<td>class</td>
+							<td>focus-color</td>
 							<td>string</td>
-							<td>Additional CSS classes to apply to the hero container.</td>
+							<td>any valid CSS color.
+							</td>
 							<td></td>
 							<td>""</td>
 						</tr>
-						<tr>
-							<td>height</td>
+
+
+
+						<!-- TODO not working (scrolls back to nav on focus lost) <tr>
+							<td>position</td>
 							<td>string</td>
-							<td>Height of hero.</td>
-							<td>any valid CSS size (px, %, em, vh, etc.)</td>
-							<td>`calc(100vh - nav height)`</td>
-						</tr>
+							<td>Position of navbar.</td>
+							<td>"sticky-top", "position-static", "position-relative", "position-absolute",
+								"position-fixed", "position-sticky", "fixed-top", "fixed-bottom"</td>
+							<td>"sticky-top"</td>
+						</tr> -->
 					</tbody>
 				</table>
 			</article>
