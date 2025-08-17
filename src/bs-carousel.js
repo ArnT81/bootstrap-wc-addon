@@ -25,7 +25,7 @@ export class BsCarousel extends HTMLElement {
 
 			<div
 				id="carouselExampleIndicators"
-				style="width: ${width};
+				style="width: ${width};"
 				class="carousel slide ${extraClasses}"
 				data-bs-ride="${autoplay}"
 			>
