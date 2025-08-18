@@ -1,90 +1,99 @@
 export class BsForm extends HTMLElement {
+	constructor() {
+		super();
+		this._formData = new FormData(); // Intern FormData-objekt
+	}
+
 	connectedCallback() {
+		let controls;
 		const extraClasses = this.getAttribute('class') || '';
 		const id = this.getAttribute('id') || '';
 
-		const shadow = this.attachShadow({ mode: 'open' });
+		const form = document.createElement('form');
+		form.id = id;
+		form.className = `needs-validation ${extraClasses}`;
+		form.setAttribute('novalidate', '');
 
-		shadow.innerHTML = `
-            <form id="${id}" class="row g-3 needs-validation ${extraClasses}" novalidate>
-                <slot></slot>
-            </form>
-        `;
+		//Append children to the form
+		while (this.firstChild) {
+			form.appendChild(this.firstChild);
+		}
+		this.appendChild(form);
 
-		const form = shadow.querySelector('form');
-		const slot = shadow.querySelector('slot');
-
-		const validate = (form) => {
-			const nodes = slot.assignedElements({ flatten: true });
-
-			const controls = nodes.flatMap(node =>
-				node.querySelectorAll ? Array.from(node.querySelectorAll('input, select, textarea')) : []
-			);
-
+		const validate = () => {
+			controls = Array.from(form.querySelectorAll('input, select, textarea'));
 			controls.forEach(el => {
-				const feedback = el.parentElement.querySelector('.invalid-feedback');
 				if (!el.checkValidity()) {
 					el.classList.add('is-invalid');
 					el.classList.remove('is-valid');
 					el.setAttribute('aria-invalid', 'true');
-					if (feedback) feedback.style.display = 'block';
 				} else {
 					el.classList.remove('is-invalid');
 					el.classList.add('is-valid');
 					el.removeAttribute('aria-invalid');
-					if (feedback) feedback.style.display = 'none';
 				}
 			});
 
 			const isValid = controls.every(el => el.checkValidity());
-
 			if (!isValid) {
 				form.classList.add('was-validated');
 				const firstInvalid = controls.find(el => !el.checkValidity());
 				if (firstInvalid) firstInvalid.focus();
 			}
-
 			return isValid;
 		};
 
+		//  Validation on input or change events
+		const updateValidation = () => {
+			controls = Array.from(form.querySelectorAll('input, select, textarea'));
+			controls.forEach(el => {
+				['input', 'change'].forEach(event => {
+					el.removeEventListener(event, validate); // Prevent double listeners
+					el.addEventListener(event, () => {
+						validate();
+						// Update FormData on every change
+						this._formData = new FormData(form);
+					});
+				});
+			});
+		};
 
-		slot.addEventListener('slotchange', () => {
-			const nodes = slot.assignedNodes({ flatten: true });
+		// Initial validation and listeners for new elements
+		updateValidation();
 
-			const addClickListenerToSubmit = (el) => {
-				if (el.nodeType !== Node.ELEMENT_NODE) return;
-
-				// Endast custom submit-knappar
-				if (el.getAttribute && el.getAttribute('type') === 'submit' && el.tagName !== 'BUTTON') {
-					if (!el._hasSubmitListener) {
-						el.addEventListener('click', (ev) => {
-							ev.preventDefault();
-							form.requestSubmit();
-						});
-						el._hasSubmitListener = true;
-					}
-				}
-
-				el.children && Array.from(el.children).forEach(addClickListenerToSubmit);
-			};
-
-			nodes.forEach(addClickListenerToSubmit);
+		//Note changes in the form to handle dynamically added elements
+		const observer = new MutationObserver(() => {
+			updateValidation();
 		});
+		observer.observe(form, { childList: true, subtree: true });
+
 
 		form.addEventListener('submit', (e) => {
-			e.preventDefault();
+			const isValid = validate();
 
-			if (!validate(form)) return;
+			// Uppdate FormData
+			this._formData = new FormData(form);
 
-			const submitEvent = new SubmitEvent('submit', {
-				bubbles: true,
-				cancelable: true,
-				composed: true,
-				submitter: e.submitter
-			});
-
-			this.dispatchEvent(submitEvent);
+			// Lets the original submit event bubble up if validation returns true
+			if (!isValid && e.cancelable) {
+				e.preventDefault();
+			}
 		});
+
+		// Properties and methods
+		Object.defineProperty(this, 'elements', {
+			get: () => controls || []
+		});
+		Object.defineProperty(this, 'length', {
+			get: () => controls?.length || 0
+		});
+		Object.defineProperty(this, 'isValid', {
+			get: () => controls?.every(el => el.checkValidity()) || false
+		});
+
+		this.submit = () => form.requestSubmit();
+		this.reset = () => form.reset();
+		this.getFormData = () => this._formData;
 	}
 }
 

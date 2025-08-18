@@ -24,7 +24,6 @@
 		import '/src/bs-button.js';
 		import '/src/bs-form.js';
 		import '/src/bs-input.js';
-
 	</script>
 
 	<script rel="script" type="module" src="src/index.js"></script>
@@ -32,92 +31,30 @@
 </head>
 
 <body>
-	<bs-form id="test-form" class="bg-primary">
+	<bs-form id="test-form">
+		<bs-input label="First name" name="firstName" class="col-md-5" required value="Anders"></bs-input>
+		<bs-input label="Last name" name="lastName" class="col-md-5" required value="Söderberg"></bs-input>
+		<bs-input label="Username" name="username" class="col-md-5" required></bs-input>
 
-		<div class="col-md-4">
-			<label for="validationCustom01" class="form-label">First name</label>
-			<input name="firstName" type="text" class="form-control" id="validationCustom01" value="Mark" required>
-			<div class="valid-feedback">
-				Looks good!
-			</div>
-		</div>
-		<div class="col-md-4">
-			<label for="validationCustom02" class="form-label">Last name</label>
-			<input name="lastName" type="text" class="form-control" id="validationCustom02" value="Otto" required>
-			<div class="invalid-feedback">
-				WRONG!
-			</div>
-		</div>
+		<bs-select name="sex" id="custom-select" class="form-check col-md-5"
+			options='[{"label": "Male", "value": "male"}, {"label": "Female", "value": "female"}]'>
+		</bs-select>
 
-
-		<bs-input label="Username" name="username" class="col-md-4" required></bs-input>
-
-
-		<div>
-			<div class="d-flex gap-2 position-relative justify-content-end px-3">
-				<bs-button type="reset" variant="secondary">Ångra</bs-button>
-				<bs-button type="submit" variant="primary">Skicka</bs-button>
-			</div>
+		<div class="d-flex gap-2 position-relative justify-content-end px-3">
+			<bs-button type="reset" variant="secondary">Ångra</bs-button>
+			<bs-button type="submit" variant="primary">Skicka</bs-button>
 		</div>
 	</bs-form>
-
-	<form id="form2" class="row g-3 needs-validation ${extraClasses}" novalidate>
-		<bs-input label="Username" name="username" class="col-md-4" required></bs-input>
-
-
-		<div>
-			<div class="d-flex gap-2 position-relative justify-content-end px-3">
-				<bs-button type="reset" variant="secondary">Ångra</bs-button>
-				<bs-button type="submit" variant="primary">Skicka</bs-button>
-			</div>
-		</div>
-	</form>
-
-
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
-			const bsForm = document.getElementById("test-form");
 
-			bsForm.addEventListener("submit", (e) => {
-				e.preventDefault()
-
-				const body = Object.fromEntries(new FormData(bsForm.formElement))
-				console.log(e.target);
-
-/*
-				console.log(e.target);
-
-				const body = Object.fromEntries(new FormData(e.target))
-				console.log(body); */
-			});
-
-			const form = document.getElementById("form2");
-
-
-			form.addEventListener("submit", (e) => {
-				e.preventDefault()
-
-				const body = Object.fromEntries(new FormData(e.target))
+			document.getElementById("test-form").addEventListener('submit', (e) => {
+				e.preventDefault();
+				const body = Object.fromEntries(new FormData(e.target));
 				console.log(body);
 			});
-		})
+		});
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
