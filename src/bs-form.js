@@ -54,17 +54,17 @@ export class BsForm extends HTMLElement {
 			const addClickListenerToSubmit = (el) => {
 				if (el.nodeType !== Node.ELEMENT_NODE) return;
 
-				// Native button
-				if (el.tagName === 'BUTTON' && el.type === 'submit') {
-					el.addEventListener('click', () => form.requestSubmit());
+				// Endast custom submit-knappar
+				if (el.getAttribute && el.getAttribute('type') === 'submit' && el.tagName !== 'BUTTON') {
+					if (!el._hasSubmitListener) {
+						el.addEventListener('click', (ev) => {
+							ev.preventDefault();
+							form.requestSubmit();
+						});
+						el._hasSubmitListener = true;
+					}
 				}
 
-				// Custom element type="submit"
-				if (el.getAttribute && el.getAttribute('type') === 'submit') {
-					el.addEventListener('click', () => form.requestSubmit());
-				}
-
-				// Check children recursively
 				el.children && Array.from(el.children).forEach(addClickListenerToSubmit);
 			};
 
