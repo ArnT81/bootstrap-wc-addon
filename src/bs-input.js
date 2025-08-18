@@ -15,22 +15,7 @@ class BsInput extends HTMLElement {
 
 		let html = '';
 
-		if (type === 'select') {
-			const options = this.innerHTML || '';
-			html = `
-			<div class="${extraClasses}">
-                <label for="${name}" class="form-label">${label}</label>
-
-                <select name="${name}" class="form-select" id="${name}" ${required ? 'required' : ''}>
-                    ${options}
-                </select>
-
-                <div class="invalid-feedback" aria-live="polite" role="alert">
-                    Please select a valid ${label.toLowerCase()}.
-                </div>
-			</div>
-            `;
-		} else if (type === 'checkbox') {
+		if (type === 'checkbox') {
 			html = `
                 <div class="form-check ${extraClasses}">
                     <input name="${name}" type="checkbox" class="form-check-input" id="${name}" ${required ? 'required' : ''}>
@@ -42,7 +27,7 @@ class BsInput extends HTMLElement {
                     </div>
                 </div>
             `;
-		} else {
+		} else if (type === 'text') {
 			html = `
 			<div class="${extraClasses}">
                 <label for="${name}" class="form-label">${label}</label>
@@ -54,13 +39,13 @@ class BsInput extends HTMLElement {
                 </div>
 			</div>
             `;
-		}
+		} else return null
 
 		this.innerHTML = html;
 	}
 
 	validation() {
-		const inputEl = this.querySelector('input, select');
+		const inputEl = this.querySelector('input');
 		if (!inputEl) return;
 
 		inputEl.addEventListener('input', () => {
@@ -81,7 +66,7 @@ class BsInput extends HTMLElement {
 	}
 
 	get value() {
-		const inputEl = this.querySelector('input, select');
+		const inputEl = this.querySelector('input');
 		if (!inputEl) return null;
 		if (inputEl.type === 'checkbox') return inputEl.checked;
 		return inputEl.value;
