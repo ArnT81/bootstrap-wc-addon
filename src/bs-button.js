@@ -3,7 +3,7 @@ export class BsButton extends HTMLElement {
 		const type = this.getAttribute('type') || 'button';
 		const variant = this.getAttribute('variant') || '';
 		const size = this.getAttribute('size') || '';
-		const label = this.getAttribute('label') || this.innerHTML.trim();
+		const label = this.getAttribute('label') || this.textContent.trim();
 		const disabled = this.hasAttribute('disabled');
 		const extraClasses = this.getAttribute('class') || '';
 		const id = this.getAttribute('id') || '';
