@@ -22,39 +22,95 @@
 		import '/src/bs-navbar.js';
 		import '/src/bs-carousel.js';
 		import '/src/bs-button.js';
+		import '/src/bs-form.js';
+		import '/src/bs-input.js';
+
 	</script>
 
 	<script rel="script" type="module" src="src/index.js"></script>
-	<script rel="script" type="module" src="test.js"></script>
 	<link rel="stylesheet" href="css/style.min.css">
 </head>
 
 <body>
-	<header>
-		<bs-navbar brand="My company name" focus-color="primary"
-			links='[{"href": "/", "label": "Home"}, {"Local": [{"href": "#top", "label": "Top"}, {"href": "#middle", "label": "Middle"}, {"href": "#bottom", "label": "Bottom"}]}, {"href": "https://www.anderssöderberg.se", "label": "External link", "target": "_blank"}]'>
-		</bs-navbar>
+	<bs-form id="test-form" class="bg-primary">
 
-	</header>
-
-	<main>
-		<bs-carousel autoplay controls indicators height="400px" class="carousel-fade carousel-dark" images='[
-					{"src":"https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg", "alt":"road","caption":{"label":"label","content":"content"}},
-					{"src":"https://images.pexels.com/photos/247851/pexels-photo-247851.jpeg","alt":"free","caption":{"label":"label","content":"content"}},
-					{"src":"https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg","alt":"free", "interval": 200}]'>
-		</bs-carousel>
-
-
-		<div id="middle">
-			<p>Middle</p>
+		<div class="col-md-4">
+			<label for="validationCustom01" class="form-label">First name</label>
+			<input name="firstName" type="text" class="form-control" id="validationCustom01" value="Mark" required>
+			<div class="valid-feedback">
+				Looks good!
+			</div>
+		</div>
+		<div class="col-md-4">
+			<label for="validationCustom02" class="form-label">Last name</label>
+			<input name="lastName" type="text" class="form-control" id="validationCustom02" value="Otto" required>
+			<div class="invalid-feedback">
+				WRONG!
+			</div>
 		</div>
 
-		<div class="vh-100"></div>
 
-		<div id="bottom">
-			<p>Bottom</p>
+		<bs-input label="Username" name="username" class="col-md-4" required></bs-input>
+
+
+		<div>
+			<div class="d-flex gap-2 position-relative justify-content-end px-3">
+				<bs-button type="reset" variant="secondary">Ångra</bs-button>
+				<bs-button type="submit" variant="primary">Skicka</bs-button>
+			</div>
 		</div>
-	</main>
+	</bs-form>
+
+	<form id="form2" class="row g-3 needs-validation ${extraClasses}" novalidate>
+	<bs-input label="Username" name="username" class="col-md-4" required></bs-input>
+
+
+	<div>
+		<div class="d-flex gap-2 position-relative justify-content-end px-3">
+			<bs-button type="reset" variant="secondary">Ångra</bs-button>
+			<bs-button type="submit" variant="primary">Skicka</bs-button>
+		</div>
+	</div>
+	</form>
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const bsForm = document.getElementById("test-form");
+
+			bsForm.addEventListener("submit", (e) => {
+				console.log("Form submitted!");
+				console.log(e);
+			});
+
+			const form = document.getElementById("form2");
+
+
+			form.addEventListener("submit", (e) => {
+				console.log("Form submitted!");
+				console.log(e);
+			});
+
+
+
+		})
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

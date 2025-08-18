@@ -30,3 +30,6 @@ build/
 
 # Rollup cache
 .rollup.cache
+
+# Orca availability output files
+*.out
