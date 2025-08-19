@@ -638,7 +638,28 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 						<tr>
 							<td>class</td>
 							<td>string</td>
-							<td>Extra CSS classes to apply to the select element.</td>
+							<td>Extra CSS classes (applies to the wrapper of select element).</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>required</td>
+							<td>Boolean (presence-based)</td>
+							<td>Whether the input must be filled</td>
+							<td></td>
+							<td>"false"</td>
+						</tr>
+						<tr>
+							<td>label</td>
+							<td>string</td>
+							<td>Text label displayed for the select</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>placeholder</td>
+							<td>string (presence-based, not shown if not provided)</td>
+							<td>Default text inside the select on load</td>
 							<td></td>
 							<td>""</td>
 						</tr>
@@ -664,7 +685,8 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 					<h3>Code</h3>
 
 					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
-						<pre class="text-light w-100"><code>&lt;bs-spinner color="primary" size="35px"&gt;&lt;/bs-spinner&gt;</code></pre>
+						<pre
+							class="text-light w-100"><code>&lt;bs-spinner color="primary" size="35px"&gt;&lt;/bs-spinner&gt;</code></pre>
 
 						<bs-button variant="light" class="copy-btn" size="sm">
 							Copy
@@ -704,7 +726,8 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 						<tr>
 							<td>size</td>
 							<td>string (CSS unit)</td>
-							<td>Custom size of the spinner. Can be set in px, rem, em, etc. Leave empty for default size.</td>
+							<td>Custom size of the spinner. Can be set in px, rem, em, etc. Leave empty for default
+								size.</td>
 							<td></td>
 							<td>""</td>
 						</tr>
