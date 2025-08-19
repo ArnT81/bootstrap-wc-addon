@@ -15,6 +15,7 @@ import './bs-carousel.js';
 
 // Ingen export krävs om komponenterna själva gör customElements.define()
 // Men du *kan* exportera dem om du vill att folk ska kunna göra egna instanser:
+export * from './shared.js';
 export { BsNavbar } from './bs-navbar.js';
 export { BsButton } from './bs-button.js';
 export { BsSpinner } from './bs-spinner.js';

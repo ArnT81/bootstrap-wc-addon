@@ -1,3 +1,5 @@
+import { validateControl } from "./shared.js";
+
 export class BsForm extends HTMLElement {
 	constructor() {
 		super();
@@ -22,24 +24,16 @@ export class BsForm extends HTMLElement {
 
 		const validate = () => {
 			controls = Array.from(form.querySelectorAll('input, select, textarea'));
-			controls.forEach(el => {
-				if (!el.checkValidity()) {
-					el.classList.add('is-invalid');
-					el.classList.remove('is-valid');
-					el.setAttribute('aria-invalid', 'true');
-				} else {
-					el.classList.remove('is-invalid');
-					el.classList.add('is-valid');
-					el.removeAttribute('aria-invalid');
-				}
-			});
 
-			const isValid = controls.every(el => el.checkValidity());
+			const results = controls.map(el => validateControl(el));
+			const isValid = results.every(ok => ok);
+
 			if (!isValid) {
 				form.classList.add('was-validated');
 				const firstInvalid = controls.find(el => !el.checkValidity());
 				if (firstInvalid) firstInvalid.focus();
 			}
+
 			return isValid;
 		};
 

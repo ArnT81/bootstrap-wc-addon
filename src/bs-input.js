@@ -1,3 +1,5 @@
+import { validateControl } from "./shared.js";
+
 class BsInput extends HTMLElement {
 	connectedCallback() {
 		this.render();
@@ -48,21 +50,8 @@ class BsInput extends HTMLElement {
 		const inputEl = this.querySelector('input');
 		if (!inputEl) return;
 
-		inputEl.addEventListener('input', () => {
-			if (inputEl.checkValidity()) {
-				inputEl.classList.remove('is-invalid');
-				inputEl.classList.add('is-valid');
-			} else {
-				inputEl.classList.remove('is-valid');
-				inputEl.classList.add('is-invalid');
-			}
-		});
-
-		inputEl.addEventListener('blur', () => {
-			if (!inputEl.checkValidity()) {
-				inputEl.classList.add('is-invalid');
-			}
-		});
+		inputEl.addEventListener('input', () => validateControl(inputEl));
+		inputEl.addEventListener('blur', () => validateControl(inputEl));
 	}
 
 	get value() {
