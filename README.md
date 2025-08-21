@@ -3,6 +3,7 @@
 **Bootstrap WC Addon** is a set of native **Web Components** that wrap and extend Bootstrap's own components, bringing them to the Custom Elements standard.
 This lets you use familiar Bootstrap styles and behaviors inside HTML tags like `<bs-button>` or `<bs-modal>` — without manually writing all the Bootstrap markup.
 
+Note! This library is a work in progress and is being developed as time allows. It is published on npm, but please note that it may not yet be ready for production use.
 <br>
 
 ## ✨ Features
