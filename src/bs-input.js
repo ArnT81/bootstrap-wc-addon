@@ -6,42 +6,91 @@ class BsInput extends HTMLElement {
 		this.validation();
 	}
 
+
 	render() {
+		const options = this.getAttribute("options");
 		const type = this.getAttribute('type') || 'text';
 		const name = this.getAttribute('name') || '';
-		const label = this.getAttribute('label') || '';
+		const labelText = this.getAttribute('label') || '';
 		const required = this.hasAttribute('required');
 		const value = this.getAttribute('value') || '';
 		const extraClasses = this.getAttribute('class') || '';
+		const disabled = this.getAttribute('disabled') !== null ? 'disabled' : '';
+		const id = this.getAttribute('id') || '';
+		const placeholder = this.getAttribute('placeholder') || '';
 
+
+		const floating = extraClasses.includes('form-floating')
 
 		let html = '';
 
 		if (type === 'checkbox') {
 			html = `
-                <div class="form-check ${extraClasses}">
-                    <input name="${name}" type="checkbox" class="form-check-input" id="${name}" ${required ? 'required' : ''}>
+				<div class="form-check ${extraClasses}">
+					<input name="${name}" type="checkbox" class="form-check-input" id="${name}" ${required ? 'required' : ''}>
 
-					<label class="form-check-label" for="${name}">${label}</label>
+					<label class="form-check-label" for="${name}">${labelText}</label>
 
 					<div class="invalid-feedback" aria-live="polite" role="alert">
-                        You must agree before submitting.
-                    </div>
-                </div>
+						You must agree before submitting.
+					</div>
+				</div>
             `;
-		} else if (type === 'text') {
+		}
+		else if (type === 'radio') {
 			html = `
-			<div class="${extraClasses}">
-                <label for="${name}" class="form-label">${label}</label>
+				<div class="form-check ${extraClasses}">
+					<input
+						class="form-check-input"
+						type="radio"
+						name="${name}"
+						id="${id}"
+						value="${value || ''}"
+						${required ? 'required' : ''}
+						${disabled ? 'disabled' : ''}
+					>
 
-				<input name="${name}" type="${type}" class="form-control" id="${name}" value="${value}" ${required ? 'required' : ''}>
+					<label class="form-check-label" for="${id}">
+						${labelText}
+					</label>
 
-				<div class="invalid-feedback" aria-live="polite" role="alert">
-                    Please provide a valid ${label.toLowerCase()}.
-                </div>
-			</div>
+					<div class="invalid-feedback" aria-live="polite" role="alert">
+						You must select an option before submitting.
+					</div>
+				</div>
+			`;
+		}
+
+		else if (type === 'select') {
+			html = `
+				<bs-select
+				label="${labelText}"
+				name="${name}"
+				id="${id}"
+				class="${extraClasses}"
+				placeholder="${placeholder}"
+				options='${options}'
+				${required}
+				${disabled}></bs-select>
             `;
-		} else return null
+		} else {
+			const label = `<label for="${name}" class="${floating ? '' : 'form-label'}">${labelText}</label>`;
+
+			html = `
+				<div class="mb-3 ${extraClasses}">
+
+				${floating ? '' : label}
+
+				<input placeholder="${placeholder}" name="${name}" type="${type}" class="form-control" id="${name}" value="${value}" ${required ? 'required' : ''}>
+
+				${floating ? label : ''}
+
+					<div class="invalid-feedback" aria-live="polite" role="alert">
+						Please provide a valid ${labelText.toLowerCase()}.
+					</div>
+				</div>
+            `;
+		}
 
 		this.innerHTML = html;
 	}
