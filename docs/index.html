@@ -25,17 +25,24 @@
 		import '../src/bs-navbar.js';
 		import '../src/bs-select.js';
 		import '../src/bs-spinner.js';
-		import '../src/bs-toast.js'; */
+		import '../src/bs-toast.js';
+		import '../src/bs-accordion.js';
+		*/
 	</script>
 	<script rel="script" src="index.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg-secondary">
 	<!-- <header> -->
 	<bs-navbar brand="Bootstrap WC Addon" focus-color="red" links='[
 	{"href": "#top", "label": "Top"},
 	{"href": "#introduction", "label": "Introduction"},
+			{"Accordion": [
+			{"href": "#bs-accordion", "label": "Introduction"},
+			{"href": "#bs-accordion-example", "label": "Example"},
+			{"href": "#bs-accordion-attributes", "label": "Attributes"}
+			]},
 			{"Button": [
 			{"href": "#bs-button", "label": "Introduction"},
 			{"href": "#bs-button-example", "label": "Example"},
@@ -81,12 +88,13 @@
 	"fixed-bottom"
 	-->
 
-	<bs-hero id="top" title="Bootstrap WC Addon" subtitle="This library is a work in progress and is being developed as time allows. It is published on npm, but please note that it may not yet be ready for production use."
+	<bs-hero id="top" title="Bootstrap WC Addon"
+		subtitle="This library is a work in progress and is being developed as time allows. It is published on npm, but please note that it may not yet be ready for production use."
 		background="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" textColor="light">
 	</bs-hero>
 
 
-	<main class="d-flex flex-column gap-5">
+	<main class="d-flex flex-column gap-5 bg">
 		<section id="introduction" class="bg-dark text-light px-2 py-4">
 			<h2>📖 Introduction</h2>
 
@@ -138,7 +146,95 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 
 		</section>
 
-		<section id="bs-button" class="p-2 d-flex flex-column gap-3">
+
+		<section id="bs-accordion" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
+			<article>
+				<h2>Accordion</h2>
+				<p><b>tag name:</b> bs-accordion</p>
+			</article>
+
+			<article id="bs-accordion-example" class="d-flex flex-column gap-3">
+				<div>
+					<h3>Example</h3>
+
+						<bs-accordion items='[
+							{"title":"Title","content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto."},
+							{"content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto."},
+							{"content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto."}
+						]'>
+				</div>
+
+				<div>
+					<h3>Code</h3>
+
+					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
+
+						<pre class="text-light w-100"><code>&lt;bs-accordion items='[
+	{&quot;title&quot;:&quot;Title&quot;,&quot;content&quot;:&quot;Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto.&quot;},
+	{&quot;content&quot;:&quot;Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto.&quot;},
+	{&quot;content&quot;:&quot;Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptates, quasi aut hic accusantium nam itaque aliquid, eaque laudantium odit consequatur illo vero atque. Asperiores quod sit molestias quia iusto.&quot;}
+]'&gt;</code></pre>
+
+
+						<bs-button variant="light" class="copy-btn" size="sm">
+							Copy
+						</bs-button>
+					</div>
+				</div>
+			</article>
+
+			<article id="bs-accordion-attributes">
+				<h3>Attributes</h3>
+
+				<table class="table table-bordered table-light">
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Alternatives</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>class</td>
+							<td>string</td>
+							<td>HTML class attribute.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>id</td>
+							<td>string</td>
+							<td>HTML id attribute.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>label</td>
+							<td>string</td>
+							<td>Label text.</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+
+						<tr>
+							<td>openindex</td>
+							<td>number (string)</td>
+							<td>Specifies which accordion item should be open (expanded) by default. The index starts at 0.</td>
+							<td><code>&lt;bs-accordion openindex="1"&gt;&lt;/bs-accordion&gt;</code></td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
+
+		<section id="bs-button" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Button</h2>
 				<p><b>tag name:</b> bs-button</p>
@@ -240,7 +336,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<section id="bs-carousel" class="p-2 d-flex flex-column gap-3">
+		<section id="bs-carousel" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Carousel</h2>
 				<p><b>tag name:</b> bs-carousel</p>
@@ -345,7 +441,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<section id="bs-hero" class="p-2 d-flex flex-column gap-3">
+		<section id="bs-hero" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Hero</h2>
 				<p><b>tag name:</b> bs-hero</p>
@@ -444,7 +540,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<section id="bs-navbar" class="p-2 d-flex flex-column gap-3">
+		<section id="bs-navbar" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Navbar</h2>
 				<p><b>tag name:</b> bs-navbar</p>
@@ -544,7 +640,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<section id="bs-select" class="p-2 d-flex flex-column gap-3">
+		<section id="bs-select" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Select</h2>
 				<p><b>tag name:</b> bs-select</p>
@@ -668,7 +764,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<section id="bs-spinner" class="p-2 d-flex flex-column gap-3">
+		<section id="bs-spinner" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2>Spinner</h2>
 				<p><b>tag name:</b> bs-spinner</p>
