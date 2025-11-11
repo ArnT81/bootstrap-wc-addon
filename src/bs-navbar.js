@@ -23,6 +23,8 @@ export class BsNavbar extends HTMLElement {
 			<style>
 				.offcanvas {
 					background-color: inherit;
+					backdrop-filter: blur(16px) saturate(180%);
+					-webkit-backdrop-filter: blur(16px) saturate(180%);
 				}
 				.offcanvas-header {
 					background-color: inherit;
@@ -31,6 +33,16 @@ export class BsNavbar extends HTMLElement {
 				}
 				.navbar {
 					padding-inline: 16px;
+				}
+				.navbar::after {
+					content: "";
+					position: absolute;
+					inset: 0;
+					backdrop-filter: blur(16px) saturate(180%);
+					-webkit-backdrop-filter: blur(16px) saturate(180%);
+					z-index: -1; /* ligger bakom innehållet */
+					pointer-events: none;
+					background-color: inherit;
 				}
 				.navbar-toggler:focus {
 					box-shadow:  ${resolvedColor ? `0 0 0 0.20rem ${resolvedColor}` : "none"};
