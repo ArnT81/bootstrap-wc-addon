@@ -63,16 +63,45 @@ npm install bootstrap-wc-addon
 **Via CDN (jsDelivr)**
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/dist/bootstrap-wc-addon.bundle.min.js"></script>
 ```
 
 **Note**: Bootstrap 5 is required. Include it before this addon:
 ```html
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
+```
+
+<br>
+
+## 🎨 Default CSS
+```css
+:root {
+  --navbar-height: 60px;
+  --background-color: rgb(255 255 255 / .7);
+  --foreground-color: #000;
+}
+
+.navbar {
+  height: var(--navbar-height);
+  background-color: var(--background-color);
+}
+
+.navbar * {
+  color: var(--foreground-color);
+}
+
+.active {
+  color: var(--bs-primary) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: rgb(4 13 22 / .7);
+    --foreground-color: #fff;
+  }
+}
 ```
 
 <br>
