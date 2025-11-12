@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-wc-addon",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "MIT",
   "author": "Anders Söderberg",
   "description": "A set of native Web Components that wrap and extend Bootstrap's own components, bringing them to the Custom Elements standard.",
