@@ -62,7 +62,7 @@ npm install bootstrap-wc-addon
 
 **Via CDN (jsDelivr)**
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon/css/style.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/css/style.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/dist/bootstrap-wc-addon.bundle.min.js"></script>
 ```
 
