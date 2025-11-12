@@ -1,35 +1,25 @@
 :root {
 	--navbar-height: 60px;
-	--navbar-color: rgba(255, 255, 255, 0.6);
-	--text-color: black;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-size: inherit;
-	margin: 0;
+	--background-color: rgb(255 255 255 / .7);
+	--foreground-color: #000;
 }
 
 .navbar {
 	height: var(--navbar-height);
-	background-color: var(--navbar-color);
+	background-color: var(--background-color);
 }
 
 .navbar * {
-	color: var(--text-color);
+	color: var(--foreground-color);
 }
 
 .active {
-	color: red !important;
+	color: var(--bs-primary) !important;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--navbar-color: rgba(4, 13, 22, 0.6);
-		--text-color: white
+		--background-color: rgb(4 13 22 / .7);
+		--foreground-color: #fff;
 	}
 }
