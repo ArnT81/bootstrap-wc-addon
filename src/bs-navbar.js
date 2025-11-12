@@ -113,7 +113,10 @@ export class BsNavbar extends HTMLElement {
 								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: inherit;">
 									${dropdownLabel}
 								</a>
-								<ul class="dropdown-menu">
+								<ul
+									class="dropdown-menu"
+									data-bs-dismiss="offcanvas"
+								>
 									${subLinks.map(sub => `
 										<li	class="nav-item">
 											<a
@@ -131,7 +134,10 @@ export class BsNavbar extends HTMLElement {
 						`;
 			}
 			return `
-							<li class="nav-item">
+							<li
+								class="nav-item"
+								data-bs-dismiss="offcanvas"
+							>
 								<a
 									class="nav-link"
 									href="${link.href}"
