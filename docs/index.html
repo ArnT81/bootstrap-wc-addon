@@ -27,6 +27,7 @@
 		import '../src/bs-spinner.js';
 		import '../src/bs-toast.js';
 		import '../src/bs-accordion.js';
+		import '../src/bs-input.js';
 		*/
 	</script>
 	<script rel="script" src="index.js"></script>
@@ -52,6 +53,11 @@
 			{"href": "#bs-carousel", "label": "Introduction"},
 			{"href": "#bs-carousel-example", "label": "Example"},
 			{"href": "#bs-carousel-attributes", "label": "Attributes"}
+			]},
+			{"Input": [
+			{"href": "#bs-input", "label": "Introduction"},
+			{"href": "#bs-input-example", "label": "Example"},
+			{"href": "#bs-input-attributes", "label": "Attributes"}
 			]},
 			{"Hero": [
 			{"href": "#bs-hero", "label": "Introduction"},
@@ -153,7 +159,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 				<p><b>tag name:</b> bs-accordion</p>
 			</article>
 
-			<article id="bs-accordion-example" class="d-flex flex-column gap-3" >
+			<article id="bs-accordion-example" class="d-flex flex-column gap-3">
 				<div>
 					<h3>Example</h3>
 
@@ -534,6 +540,193 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 							<td>Height of hero.</td>
 							<td>any valid CSS size (px, %, em, vh, etc.)</td>
 							<td>`calc(100vh - nav height)`</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+
+		<section id="bs-input" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
+			<article>
+				<h2 class="text-primary">Input</h2>
+				<p><b>tag name:</b> bs-input</p>
+				<p><b>Description:</b>
+					A versatile Bootstrap-styled input component that supports text, checkbox, radio, and
+					select types with built-in validation.
+				</p>
+
+				<p>
+					⚠️ <b>Important Note:</b>
+					When adding "submit" event listeners inside DOMContentLoaded for forms using the
+					&lt;bs-input&gt; or &lt;bs-select&gt; components, the built-in validation
+					automatically stops submission of invalid forms. This ensures your custom listener only runs
+					when the form is valid.
+				</p>
+
+				<p>
+					♿️ <b>Accessibility Note:</b>
+					All &lt;bs-input&gt; and &lt;bs-select&gt; components automatically announce
+					validation errors to screen readers using aria-live="polite" and
+					role="alert". This ensures users with visual impairments are informed
+					about invalid form inputs.
+				</p>
+			</article>
+
+			<article id="bs-input-example" class="d-flex flex-column gap-3">
+				<div>
+					<h3>Example</h3>
+
+					<form id="inputForm" class="needs-validation" novalidate>
+						<bs-input type="text" name="firstName" label="First Name" placeholder="Enter first name"
+							class="mb-3" required></bs-input>
+
+						<bs-input type="checkbox" name="subscribe" label="Subscribe to newsletter" class="mb-3"
+							required></bs-input>
+
+						<bs-input type="radio" name="gender" label="Gender"
+							options='[{"value":"male","label":"Male"},{"value":"female","label":"Female"}]' class="mb-3"
+							required></bs-input>
+
+						<bs-input type="select" label="Role" name="role" id="custom-select" class="col-md-5"
+							placeholder="Select Position" options='[
+								{"label": "Developer", "value": "1"},
+								{"label": "UI/UX Designer", "value": "2"},
+								{"label": "Tester", "value": "3"}
+								]' required>
+						</bs-input>
+
+						<bs-button type="submit" variant="primary">Submit</bs-button>
+						<bs-button type="reset" variant="secondary">Reset</bs-button>
+					</form>
+
+					<script>
+						document.addEventListener("DOMContentLoaded", () => {
+							const inputForm = document.getElementById('inputForm');
+
+							inputForm.addEventListener('submit', (e) => {
+								e.preventDefault();
+								const data = Object.fromEntries(new FormData(e.target));
+								alert(JSON.stringify(data));
+							});
+						})
+					</script>
+				</div>
+
+				<div>
+					<h3>Code</h3>
+					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
+						<pre class="text-light w-100"><code>&lt;form id="inputForm" class="needs-validation" novalidate&gt;
+    &lt;bs-input type="text" name="firstName" label="First Name" placeholder="Enter first name" required class="mb-3"&gt;&lt;/bs-input&gt;
+    &lt;bs-input type="checkbox" name="subscribe" label="Subscribe to newsletter" class="mb-3" required&gt;&lt;/bs-input&gt;
+    &lt;bs-input type="radio" name="gender" label="Gender" options='[{"value":"male","label":"Male"},{"value":"female","label":"Female"}]' class="mb-3" required&gt;&lt;/bs-input&gt;
+    &lt;bs-input type="select" label="Role" name="role" id="custom-select" class="col-md-5" placeholder="Select Position" options='[
+        {"label": "Developer", "value": "1"},
+        {"label": "UI/UX Designer", "value": "2"},
+        {"label": "Tester", "value": "3"}
+    ]' required&gt;&lt;/bs-input&gt;
+    &lt;bs-button type="submit" variant="primary"&gt;Submit&lt;/bs-button&gt;
+    &lt;bs-button type="reset" variant="secondary"&gt;Reset&lt;/bs-button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.addEventListener("DOMContentLoaded", () =&gt; {
+    const inputForm = document.getElementById('inputForm');
+    inputForm.addEventListener('submit', (e) =&gt; {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target));
+        alert(JSON.stringify(data));
+    });
+});
+&lt;/script&gt;</code></pre>
+
+						<bs-button variant="light" class="copy-btn" size="sm">Copy</bs-button>
+					</div>
+				</div>
+			</article>
+
+			<article id="bs-input-attributes" style="overflow: auto">
+				<h3>Attributes</h3>
+
+				<table class="table table-bordered table-light">
+					<thead>
+						<tr>
+							<th>Attribute</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Alternatives</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>type</td>
+							<td>string</td>
+							<td>Type of input (text, checkbox, radio, select)</td>
+							<td></td>
+							<td>text</td>
+						</tr>
+						<tr>
+							<td>name</td>
+							<td>string</td>
+							<td>HTML name attribute used in forms</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>label</td>
+							<td>string</td>
+							<td>Text label displayed for the input</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>required</td>
+							<td>boolean (presence-based)</td>
+							<td>Marks the input as required</td>
+							<td></td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>options</td>
+							<td>JSON array</td>
+							<td>For radio/select types: array of objects with value, label, optional selected</td>
+							<td></td>
+							<td>[]</td>
+						</tr>
+						<tr>
+							<td>placeholder</td>
+							<td>string</td>
+							<td>Placeholder text (for text input) or hidden option text (for select)</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>class</td>
+							<td>string</td>
+							<td>Extra CSS classes applied to the wrapper</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>disabled</td>
+							<td>boolean (presence-based)</td>
+							<td>Disable the input if present</td>
+							<td></td>
+							<td>false</td>
+						</tr>
+						<tr>
+							<td>id</td>
+							<td>string</td>
+							<td>HTML id attribute for the input element</td>
+							<td></td>
+							<td>""</td>
+						</tr>
+						<tr>
+							<td>error</td>
+							<td>string</td>
+							<td>Custom error message displayed for validation</td>
+							<td></td>
+							<td>""</td>
 						</tr>
 					</tbody>
 				</table>
