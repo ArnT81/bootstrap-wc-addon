@@ -1,6 +1,6 @@
 import { validateControl } from "./shared.js";
 
-class BsInput extends HTMLElement {
+export class BsInput extends HTMLElement {
 	connectedCallback() {
 		this.render();
 		this.validation();
@@ -184,6 +184,84 @@ class BsInput extends HTMLElement {
 		if (!inputEl) return null;
 		if (inputEl.type === 'checkbox') return inputEl.checked;
 		return inputEl.value;
+	}
+
+	documentation() {
+		return {
+			"tag name": "bs-input",
+			description: "A Bootstrap-styled input web component that supports text, checkbox, radio, and select types, with built-in validation and error messages.",
+			requirements: {
+				"bootstrap.min.css": "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css\" rel=\"stylesheet\">"
+			},
+			attributes: {
+				type: {
+					description: "Type of input. Supported types: text, checkbox, radio, select.",
+					type: "string",
+					example: `<bs-input type="text"></bs-input>`,
+					default: "text"
+				},
+				name: {
+					description: "HTML name attribute used in forms.",
+					type: "string",
+					example: `<bs-input name="firstName"></bs-input>`,
+					default: ""
+				},
+				label: {
+					description: "Label text displayed for the input.",
+					type: "string",
+					example: `<bs-input label="First Name"></bs-input>`,
+					default: ""
+				},
+				required: {
+					description: "Marks the input as required.",
+					type: "boolean (presence-based)",
+					example: `<bs-input required></bs-input>`,
+					default: false
+				},
+				options: {
+					description: "For type 'radio' or 'select', an array of options. Each object can have `value`, `label`, and optional `selected` boolean.",
+					type: "JSON array",
+					example: `options='[{"value":"1","label":"One"},{"value":"2","label":"Two","selected":true}]'`,
+					default: "[]"
+				},
+				placeholder: {
+					description: "Placeholder text (for text input) or hidden option text (for select).",
+					type: "string",
+					example: `<bs-input placeholder="Enter your name"></bs-input>`,
+					default: ""
+				},
+				class: {
+					description: "Additional CSS classes applied to the wrapper div.",
+					type: "string",
+					example: `<bs-input class="col-md-6 mb-3"></bs-input>`,
+					default: ""
+				},
+				disabled: {
+					description: "Disable the input if present.",
+					type: "boolean (presence-based)",
+					example: `<bs-input disabled></bs-input>`,
+					default: false
+				},
+				id: {
+					description: "HTML id attribute for the input element.",
+					type: "string",
+					example: `<bs-input id="firstName"></bs-input>`,
+					default: ""
+				},
+				error: {
+					description: "Custom error message to display in invalid-feedback.",
+					type: "string",
+					example: `<bs-input error='Please enter a valid first name'></bs-input>`,
+					default: ""
+				}
+			},
+			events: {
+				change: {
+					description: "Fired when the input value changes. For checkbox, radio, and select types, includes the current value in event.detail.value.",
+					example: `document.querySelector('bs-input[name="firstName"]').addEventListener('change', (e) => {console.log(e.detail.value);});`
+				}
+			}
+		};
 	}
 }
 
