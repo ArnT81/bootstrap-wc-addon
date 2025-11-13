@@ -23,6 +23,8 @@ export class BsInput extends HTMLElement {
 		const id = this.getAttribute('id') || '';
 		const placeholder = this.getAttribute('placeholder') || '';
 		const errorMessage = this.getAttribute('error') || '';
+		const pattern = this.getAttribute('pattern') || '';
+
 
 
 		const floating = extraClasses.includes('form-floating')
@@ -107,13 +109,20 @@ export class BsInput extends HTMLElement {
 
 			html = `
 				<div class="mb-3 ${extraClasses}">
-
 				${floating ? '' : label}
 
-				<input placeholder="${placeholder}" name="${name}" type="${type}" class="form-control" id="${name}" value="${value}" ${required ? 'required' : ''}>
+				<input
+					placeholder="${placeholder}"
+					name="${name}"
+					type="${type}"
+					class="form-control"
+					id="${name}"
+					value="${value}"
+					${required ? 'required' : ''}
+					${pattern ? `pattern="${pattern}"` : ''}
+				>
 
 				${floating ? label : ''}
-
 					<div class="invalid-feedback" aria-live="polite" role="alert">
 						${errorMessage || "This field is required!"}
 					</div>
@@ -245,6 +254,12 @@ export class BsInput extends HTMLElement {
 					description: "HTML id attribute for the input element.",
 					type: "string",
 					example: `<bs-input id="firstName"></bs-input>`,
+					default: ""
+				},
+				pattern: {
+					description: "Optional regex pattern that the input value must match. Only applicable for text-based inputs such as text, password, tel, or search. Ignored for number, checkbox, radio, select, and date inputs.",
+					type: "string",
+					example: `<bs-input type="text" name="username" pattern='[A-Za-z0-9]{4,10}'></bs-input>`,
 					default: ""
 				},
 				error: {
