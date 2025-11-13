@@ -4,11 +4,15 @@ class BsInput extends HTMLElement {
 	connectedCallback() {
 		this.render();
 		this.validation();
+		this.handleForm();
 	}
 
 
 	render() {
-		const options = this.getAttribute("options");
+		let options = [];
+		try { options = JSON.parse(this.getAttribute("options") || "[]") }
+		catch (e) { console.error("Invalid JSON in options attribute", e) }
+
 		const type = this.getAttribute('type') || 'text';
 		const name = this.getAttribute('name') || '';
 		const labelText = this.getAttribute('label') || '';
@@ -18,11 +22,12 @@ class BsInput extends HTMLElement {
 		const disabled = this.getAttribute('disabled') !== null ? 'disabled' : '';
 		const id = this.getAttribute('id') || '';
 		const placeholder = this.getAttribute('placeholder') || '';
+		const errorMessage = this.getAttribute('error');
 
 
 		const floating = extraClasses.includes('form-floating')
-
 		let html = '';
+
 
 		if (type === 'checkbox') {
 			html = `
@@ -32,31 +37,49 @@ class BsInput extends HTMLElement {
 					<label class="form-check-label" for="${name}">${labelText}</label>
 
 					<div class="invalid-feedback" aria-live="polite" role="alert">
-						You must agree before submitting.
+						${errorMessage || "You must check this before submitting."}
 					</div>
 				</div>
             `;
 		}
 		else if (type === 'radio') {
-			html = `
-				<div class="form-check ${extraClasses}">
-					<input
-						class="form-check-input"
-						type="radio"
-						name="${name}"
-						id="${id}"
-						value="${value || ''}"
-						${required ? 'required' : ''}
-						${disabled ? 'disabled' : ''}
-					>
+			if (!name) console.error("name is required for bs-input of type radio");
+			if (!options) console.error("options is required for bs-input of type radio");
 
-					<label class="form-check-label" for="${id}">
-						${labelText}
-					</label>
+			let radiosHtml = options.map(opt => {
+				const idValue = opt.id || `${name}-${opt.value}`;
+				return `
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="${name}"
+							id="${idValue}"
+							value="${opt.value}"
+							${required ? 'required' : ''}
+							${disabled ? 'disabled' : ''}
+						>
 
-					<div class="invalid-feedback" aria-live="polite" role="alert">
-						You must select an option before submitting.
+						<label class="form-check-label" for="${idValue}">
+							${opt.label}
+						</label>
 					</div>
+				`;
+			}).join('');
+
+			html = `
+				<div class="mb-3 ${extraClasses}">
+					<fieldset>
+						<legend class="form-label">
+							${labelText}
+						</legend>
+
+						${radiosHtml}
+
+						<div class="invalid-feedback" aria-live="polite" role="alert">
+							${errorMessage || "You must select an option before submitting."}
+						</div>
+					</fieldset>
 				</div>
 			`;
 		}
@@ -73,7 +96,9 @@ class BsInput extends HTMLElement {
 				${required}
 				${disabled}></bs-select>
             `;
-		} else {
+		}
+
+		else {
 			const label = `<label for="${name}" class="${floating ? '' : 'form-label'}">${labelText}</label>`;
 
 			html = `
@@ -86,7 +111,7 @@ class BsInput extends HTMLElement {
 				${floating ? label : ''}
 
 					<div class="invalid-feedback" aria-live="polite" role="alert">
-						Please provide a valid ${labelText.toLowerCase()}.
+						${errorMessage || "You must select an option before submitting."}
 					</div>
 				</div>
             `;
@@ -99,8 +124,51 @@ class BsInput extends HTMLElement {
 		const inputEl = this.querySelector('input');
 		if (!inputEl) return;
 
-		inputEl.addEventListener('input', () => validateControl(inputEl));
-		inputEl.addEventListener('blur', () => validateControl(inputEl));
+		inputEl.addEventListener('input', () => {
+			validateControl(inputEl)
+		});
+		inputEl.addEventListener('blur', () => {
+			validateControl(inputEl)
+		});
+	}
+
+	handleForm() {
+		const form = this.closest('form');
+		if (!form) return;
+
+		if (form.dataset.preventHandlerAdded) return;
+		form.dataset.preventHandlerAdded = 'true';
+
+		(function handleSubmit() {
+			form.addEventListener('submit', (event) => {
+				const inputs = form.querySelectorAll('input, select, textarea');
+				let allValid = true;
+
+				inputs.forEach(input => {
+					const valid = input.checkValidity();
+					validateControl(input);
+					if (!valid) allValid = false;
+				});
+
+				if (!allValid) {
+					event.preventDefault();
+					event.stopImmediatePropagation();
+					return false;
+				}
+			});
+		})();
+
+		(function handleReset() {
+			form.addEventListener('reset', (event) => {
+				const inputs = form.querySelectorAll('input, select, textarea');
+
+				inputs.forEach(input => {
+					const formGroup = input.closest('.mb-3, fieldset, .form-check');
+					input.classList.remove('is-invalid', 'is-valid');
+					formGroup?.classList.remove('is-invalid', 'is-valid');
+				});
+			});
+		})();
 	}
 
 	get value() {
