@@ -125,18 +125,17 @@ export class BsInput extends HTMLElement {
 	}
 
 	validation() {
-		const inputEl = this.querySelector('input, select');
-		if (!inputEl) return;
+		const inputEls = this.querySelectorAll('input, select');
+		if (!inputEls.length) return;
 
-		if (inputEl.tagName.toLowerCase() === 'select') {
+		inputEls.forEach(inputEl => {
+			if (inputEl.tagName.toLowerCase() === 'select') {
+				inputEl.addEventListener('change', () => validateControl(inputEl));
+			}
+
+			inputEl.addEventListener('input', () => validateControl(inputEl));
 			inputEl.addEventListener('change', () => validateControl(inputEl));
-		}
-
-		inputEl.addEventListener('input', () => {
-			validateControl(inputEl)
-		});
-		inputEl.addEventListener('blur', () => {
-			validateControl(inputEl)
+			inputEl.addEventListener('blur', () => validateControl(inputEl));
 		});
 	}
 
