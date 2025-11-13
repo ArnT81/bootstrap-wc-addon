@@ -14,6 +14,8 @@ export class BsSelect extends HTMLElement {
 		const required = this.hasAttribute('required');
 		const extraClasses = this.getAttribute('class') || '';
 		const placeholder = this.getAttribute('placeholder') || '';
+		const errorMessage = this.getAttribute('error') || '';
+
 
 		this.innerHTML = `
 			<div class="mb-3 ${extraClasses}">
@@ -28,7 +30,7 @@ export class BsSelect extends HTMLElement {
 				</select>
 
 				<div class="invalid-feedback" aria-live="polite" role="alert">
-                    Please provide a valid ${label.toLowerCase()}.
+                    ${errorMessage || "You must select an option before submitting"}
                 </div>
 			</div>
 		`;

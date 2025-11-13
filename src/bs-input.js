@@ -22,7 +22,7 @@ class BsInput extends HTMLElement {
 		const disabled = this.getAttribute('disabled') !== null ? 'disabled' : '';
 		const id = this.getAttribute('id') || '';
 		const placeholder = this.getAttribute('placeholder') || '';
-		const errorMessage = this.getAttribute('error');
+		const errorMessage = this.getAttribute('error') || '';
 
 
 		const floating = extraClasses.includes('form-floating')
@@ -86,17 +86,21 @@ class BsInput extends HTMLElement {
 
 		else if (type === 'select') {
 			html = `
-				<bs-select
-				label="${labelText}"
-				name="${name}"
-				id="${id}"
-				class="${extraClasses}"
-				placeholder="${placeholder}"
-				options='${options}'
-				${required}
-				${disabled}></bs-select>
-            `;
+				<div class="mb-3 ${extraClasses}">
+					<bs-select
+						label="${labelText}"
+						name="${name}"
+						id="${id}"
+						placeholder="${placeholder}"
+						options='${JSON.stringify(options)}'
+						${required ? 'required' : ''}
+						${disabled ? 'disabled' : ''}
+						error="${errorMessage}"
+					></bs-select>
+				</div>
+			`;
 		}
+
 
 		else {
 			const label = `<label for="${name}" class="${floating ? '' : 'form-label'}">${labelText}</label>`;
@@ -111,7 +115,7 @@ class BsInput extends HTMLElement {
 				${floating ? label : ''}
 
 					<div class="invalid-feedback" aria-live="polite" role="alert">
-						${errorMessage || "You must select an option before submitting."}
+						${errorMessage || "This field is required!"}
 					</div>
 				</div>
             `;
@@ -121,8 +125,12 @@ class BsInput extends HTMLElement {
 	}
 
 	validation() {
-		const inputEl = this.querySelector('input');
+		const inputEl = this.querySelector('input, select');
 		if (!inputEl) return;
+
+		if (inputEl.tagName.toLowerCase() === 'select') {
+			inputEl.addEventListener('change', () => validateControl(inputEl));
+		}
 
 		inputEl.addEventListener('input', () => {
 			validateControl(inputEl)

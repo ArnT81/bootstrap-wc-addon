@@ -31,28 +31,33 @@
 </head>
 
 <body>
-	<form id="test-form" class="g-3 needs-validation p-4" novalidate>
-		<bs-input label="First name" name="firstName" class="col-md-5 mb-3" required value="Anders"></bs-input>
+	<form id="mine" class="g-3 needs-validation p-4" novalidate>
 
-		<bs-input label="Last name" name="lastName" class="col-md-5 form-floating" required value="Söderberg"></bs-input>
+		<bs-input label="First name" name="firstName" class="col-md-5 mb-3" required></bs-input>
+
+		<bs-input label="Last name" name="lastName" class="col-md-5" required></bs-input>
 
 		<bs-input label="Username" name="username" class="col-md-5" required></bs-input>
 
 		<bs-input type="number" label="Age" name="age" class="col-md-5" required></bs-input>
 
-		<bs-input type="password" label="Password" name="password" class="col-md-5 form-floating" required></bs-input>
 
-		<bs-input type="select" label="input type select" name="select" class="col-md-5" required options='[{"label":"One", "value": "1"}, {"label":"Two", "value": "2"}]'></bs-input>
+		<bs-input type="password" label="Password" name="password" class="col-md-5" required></bs-input>
 
-		<bs-select label="Sex" name="sex" id="custom-select" class="col-md-5" required placeholder="Välj ett alternativ"
-			options='[{"label": "Male", "value": "male"}, {"label": "Female", "value": "female"}]'>
-		</bs-select>
+		<bs-input type="select" label="Sex" name="sex" id="custom-select" class="col-md-5" required
+			placeholder="Välj ett alternativ" options='[
+		{"label": "Male", "value": "male"},
+		{"label": "Female", "value": "female"}
+		]'>
+		</bs-input>
 
 		<bs-input type="checkbox" label="checkbox" name="checkbox" class="" required></bs-input>
 
-		<bs-input type="radio" label="one" name="radio" class="" value="1" required></bs-input>
-		<bs-input type="radio" label="two" name="radio" class="" value="2"required></bs-input>
-		<bs-input type="radio" label="three" name="radio" class="" value="3"required></bs-input>
+		<bs-input type="radio" name="radio" class="" required options='[
+			{"value": "1", "label": "Option 1"},
+			{"value": "2", "label": "Option 2"}
+		]'></bs-input>
+
 
 		<div class="d-flex gap-2 position-relative justify-content-end p-3">
 			<bs-button type="reset" variant="secondary">Ångra</bs-button>
@@ -63,7 +68,7 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
 
-			document.getElementById("test-form").addEventListener('submit', (e) => {
+			document.getElementById("mine").addEventListener('submit', (e) => {
 				e.preventDefault();
 				const body = Object.fromEntries(new FormData(e.target));
 				console.log(body);
