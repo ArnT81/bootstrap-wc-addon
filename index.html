@@ -24,6 +24,7 @@
 		import '/src/bs-button.js';
 		import '/src/bs-form.js';
 		import '/src/bs-input.js';
+		import '/src/bs-dropdown.js';
 	</script>
 
 	<script rel="script" type="module" src="src/index.js"></script>
@@ -31,7 +32,7 @@
 </head>
 
 <body>
-	<form id="mine" class="g-3 needs-validation p-4" novalidate>
+	<!-- <form id="mine" class="g-3 needs-validation p-4" novalidate>
 
 		<bs-input label="First name" name="firstName" class="col-md-5 mb-3" required></bs-input>
 
@@ -41,7 +42,8 @@
 
 		<bs-input type="number" label="Age" name="age" class="col-md-5" required></bs-input>
 
-		<bs-input type="password" label="Password" name="password" class="col-md-5" required pattern="[A-Za-z0-9]{4,10}"></bs-input>
+		<bs-input type="password" label="Password" name="password" class="col-md-5" required
+			pattern="[A-Za-z0-9]{4,10}"></bs-input>
 
 		<bs-input type="select" label="Sex" name="sex" id="custom-select" class="col-md-5" required
 			placeholder="Välj ett alternativ" options='[
@@ -74,7 +76,18 @@
 				console.log(body);
 			});
 		});
-	</script>
+	</script> -->
+	<div style="margin-top: 20px;">
+
+		<div class="m-3">
+			<bs-dropdown  label="bs-dropdown" variant="primary" meny-class="bg-dark">
+				<a href="#one">1</a>
+				<a href="#two">2</a>
+				<a href="#three">3</a>
+			</bs-dropdown>
+		</div>
+	</div>
+
 </body>
 
 </html>
