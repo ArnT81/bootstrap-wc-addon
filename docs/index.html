@@ -230,7 +230,8 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 						<tr>
 							<td>openindex</td>
 							<td>number (string)</td>
-							<td>Specifies which accordion item should be open (expanded) by default. The index starts at 0.</td>
+							<td>Specifies which accordion item should be open (expanded) by default. The index starts at
+								0.</td>
 							<td>any index number present</td>
 							<td>0</td>
 						</tr>
@@ -551,30 +552,30 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 				<h2 class="text-primary">Input</h2>
 				<p><b>tag name:</b> bs-input</p>
 				<p><b>Description:</b>
-					A versatile Bootstrap-styled input component that supports text, checkbox, radio, and
-					select types with built-in validation.
+					A versatile Bootstrap-styled input component that supports text, checkbox, radio, and select types with built-in validation.
 				</p>
 
 				<p>
 					⚠️ <b>Important Note:</b>
-					When adding "submit" event listeners inside DOMContentLoaded for forms using the
-					&lt;bs-input&gt; or &lt;bs-select&gt; components, the built-in validation
-					automatically stops submission of invalid forms. This ensures your custom listener only runs
-					when the form is valid.
+					When adding "submit" event listeners inside DOMContentLoaded for forms using the &lt;bs-input&gt; components, the built-in validation automatically stops submission of invalid forms. This ensures your custom listener only runs when the form is valid.
 				</p>
 
 				<p>
 					♿️ <b>Accessibility Note:</b>
-					All &lt;bs-input&gt; and &lt;bs-select&gt; components automatically announce
-					validation errors to screen readers using aria-live="polite" and
-					role="alert". This ensures users with visual impairments are informed
-					about invalid form inputs.
+					All &lt;bs-input&gt; and &lt;bs-select&gt; components automatically announce validation errors to screen readers using aria-live="polite" and role="alert". This ensures users with visual impairments are informed about invalid form inputs.
 				</p>
 			</article>
 
 			<article id="bs-input-example" class="d-flex flex-column gap-3">
+				<script
+					src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@1.0.17/dist/bootstrap-wc-addon.bundle.min.js"></script>
 				<div>
-					<h3>Example</h3>
+					<div class="d-flex align-items-baseline gap-2 mb-2">
+						<h3>Example</h3>
+						<small class="text-muted">
+							(from v1.0.17 – may take ~24h to appear on <code>@latest</code> due to CDN caching)
+						</small>
+					</div>
 
 					<form id="inputForm" class="needs-validation" novalidate>
 						<bs-input type="text" name="firstName" label="First Name" placeholder="Enter first name"
@@ -724,7 +725,8 @@ document.addEventListener("DOMContentLoaded", () =&gt; {
 						<tr>
 							<td>pattern</td>
 							<td>string</td>
-							<td>Optional regex pattern that the input value must match. Only for text, password, tel, or search inputs.</td>
+							<td>Optional regex pattern that the input value must match. Only for text, password, tel, or
+								search inputs.</td>
 							<td></td>
 							<td>""</td>
 						</tr>
