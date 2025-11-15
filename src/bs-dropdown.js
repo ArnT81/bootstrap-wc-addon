@@ -25,20 +25,22 @@ export class BsDropdown extends HTMLElement {
 
 		this.innerHTML = `
 			<style>
-				.dropdown-menu {
+				.bs-dropdown {
 					background-color: transparent;
 					background-color: ${glossy ? `hsl(from var(--foreground-color) h s l / 0.15)` : `var(--background-color)`};
 					border-color: hsl(from var(--foreground-color) h s l / 0.6);
+					width: fit-content;
+					border-radius: var(--bs-border-radius);
 				}
-				.dropdown-menu * {
+				.bs-dropdown .dropdown-menu * {
 					color: ${glossy ? `hsl(from var(--background-color) h s l / 1)` : `var(--foreground-color)`};
 				}
 				${glossy && `
-					.dropdown-menu .dropdown-item:hover {
+					.bs-dropdown .dropdown-menu .dropdown-item:hover {
 						background-color: hsl(from var(--foreground-color) h s l / 0.5);
 						color: var(--background-color);
 					}
-					.dropdown-menu::after {
+					.bs-dropdown .dropdown-menu::after {
 						content: "";
 						position: absolute;
 						inset: 0;
@@ -52,7 +54,7 @@ export class BsDropdown extends HTMLElement {
 				`}
 			</style>
 
-			<div ${id && `id=${id}`} class="dropdown ${extraClasses}">
+			<div ${id && `id=${id}`} class="bs-dropdown dropdown ${extraClasses}">
 				<button class="btn btn-${variant} ${size && `btn-${size}`} dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					${label}
 				</button>
