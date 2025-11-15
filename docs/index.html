@@ -28,8 +28,8 @@
 		import '../src/bs-toast.js';
 		import '../src/bs-accordion.js';
 		import '../src/bs-input.js';
-		import '../src/bs-dropdown.js';
 		*/
+		import '../src/bs-dropdown.js';
 	</script>
 	<script rel="script" src="index.js"></script>
 	<!-- <link rel="stylesheet" href="../css/style.min.css"> -->
@@ -459,7 +459,7 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 			</article>
 		</section>
 
-		<!-- <section id="bs-dropdown" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
+		<section id="bs-dropdown" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
 				<h2 class="text-primary">Dropdown</h2>
 				<p><b>tag name:</b> bs-dropdown</p>
@@ -485,9 +485,14 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 
 			<article id="bs-dropdown-example" class="d-flex flex-column gap-3">
 				<div>
-					<h3>Example</h3>
+					<div class="d-flex align-items-baseline gap-2 mb-2">
+						<h3>Example</h3>
+						<small class="text-muted">
+							(from v1.0.18 – may take up to ~48h to appear on <code>@latest</code> due to CDN caching)
+						</small>
+					</div>
 
-					<bs-dropdown label="Actions" class="">
+					<bs-dropdown label="Links" glossy class="dropdown-center" menu-class="shadow-lg">
 						<a href="#one">page #1</a>
 						<a href="#two">page #2</a>
 						<a href="#three">page #3</a>
@@ -497,10 +502,10 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 				<div>
 					<h3>Code</h3>
 					<div class="position-relative bg-dark mb-3 d-flex justify-content-between rounded p-3 w-100">
-						<pre class="text-light w-100"><code>&lt;bs-dropdown label="Actions" class="" menu-class="shadow-lg"&gt;
-    &lt;div&gt;Edit Profile&lt;/div&gt;
-    &lt;div&gt;Settings&lt;/div&gt;
-    &lt;div&gt;Logout&lt;/div&gt;
+						<pre class="text-light w-100"><code>&lt;bs-dropdown label="Links" glossy class="dropdown-center" menu-class="shadow-lg"&gt;
+    &lt;a href="#one"&gt;page #1&lt;/a&gt;
+    &lt;a href="#one"&gt;page #2&lt;/a&gt;
+    &lt;a href="#one"&gt;page #3&lt;/a&gt;
 &lt;/bs-dropdown&gt;</code></pre>
 
 						<bs-button variant="light" class="copy-btn" size="sm">Copy</bs-button>
@@ -577,10 +582,21 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 							<td></td>
 							<td>none</td>
 						</tr>
+						<tr>
+							<td>glossy</td>
+							<td>boolean</td>
+							<td>
+								Enables a glossy, semi-transparent visual style for the dropdown menu.<br>
+								Activated by adding the <code>glossy</code> attribute to the component.<br>
+								Applies blur/saturate effects and adjusted background/foreground colors.
+							</td>
+							<td><code>&lt;bs-dropdown glossy&gt;&lt;/bs-dropdown&gt;</code></td>
+							<td>false</td>
+						</tr>
 					</tbody>
 				</table>
 			</article>
-		</section> -->
+		</section>
 
 		<section id="bs-hero" class="d-flex flex-column gap-3 bg-white p-3 m-2 rounded-3">
 			<article>
