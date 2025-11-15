@@ -6,6 +6,7 @@ export class BsDropdown extends HTMLElement {
 		const menuClasses = this.getAttribute('menu-class') || '';
 		const size = this.getAttribute('size') || ''; //sm, lg
 		const id = this.getAttribute('id') || '';
+		const glossy = this.hasAttribute('glossy');
 
 
 		const children = Array.from(this.children);
@@ -25,25 +26,30 @@ export class BsDropdown extends HTMLElement {
 		this.innerHTML = `
 			<style>
 				.dropdown-menu {
-					color: inherit;
 					background-color: transparent;
-					}
-				.dropdown-menu .dropdown-item:hover,
-.dropdown-menu .dropdown-item:focus {
-  background-color: rgba(255, 255, 255, 0.1); /* subtil highlight */
-  color: inherit;
-}
-				.dropdown-menu::after {
-					content: "";
-					position: absolute;
-					inset: 0;
-					backdrop-filter: blur(16px) saturate(180%);
-					-webkit-backdrop-filter: blur(16px) saturate(180%);
-					z-index: -1;
-					pointer-events: none;
-					background-color: inherit;
-					border-radius: var(--bs-dropdown-border-radius)
+					background-color: ${glossy ? `hsl(from var(--foreground-color) h s l / 0.15)` : `var(--background-color)`};
+					border-color: hsl(from var(--foreground-color) h s l / 0.6);
 				}
+				.dropdown-menu * {
+					color: ${glossy ? `hsl(from var(--background-color) h s l / 1)` : `var(--foreground-color)`};
+				}
+				${glossy && `
+					.dropdown-menu .dropdown-item:hover {
+						background-color: hsl(from var(--foreground-color) h s l / 0.5);
+						color: var(--background-color);
+					}
+					.dropdown-menu::after {
+						content: "";
+						position: absolute;
+						inset: 0;
+						backdrop-filter: blur(16px) saturate(180%);
+						-webkit-backdrop-filter: blur(16px) saturate(180%);
+						z-index: -1;
+						pointer-events: none;
+						background-color: inherit;
+						border-radius: var(--bs-dropdown-border-radius)
+					}
+				`}
 			</style>
 
 			<div ${id && `id=${id}`} class="dropdown ${extraClasses}">
@@ -104,6 +110,12 @@ export class BsDropdown extends HTMLElement {
 					type: "string",
 					example: "<bs-dropdown id='user-menu'></bs-dropdown>",
 					default: ""
+				},
+				glossy: {
+					description: "Enables a glossy, semi-transparent visual style for the dropdown menu. Activated by adding the glossy attribute to the component. Applies blur/saturate effects and adjusted background/foreground colors.",
+					type: "boolean (presence-based)",
+					example: "<bs-dropdown glossy></bs-dropdown>",
+					default: false
 				}
 			}
 		}
