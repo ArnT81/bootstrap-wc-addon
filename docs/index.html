@@ -16,7 +16,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/css/style.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@latest/dist/bootstrap-wc-addon.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-wc-addon@1.0.19/dist/bootstrap-wc-addon.bundle.min.js"></script>
 
 	<script type="module">
 		/* import '../src/bs-button.js';
@@ -28,8 +28,8 @@
 		import '../src/bs-toast.js';
 		import '../src/bs-accordion.js';
 		import '../src/bs-input.js';
-		*/
 		import '../src/bs-dropdown.js';
+		*/
 	</script>
 	<script rel="script" src="index.js"></script>
 	<!-- <link rel="stylesheet" href="../css/style.min.css"> -->
@@ -64,6 +64,11 @@
 			{"href": "#bs-carousel", "label": "Introduction"},
 			{"href": "#bs-carousel-example", "label": "Example"},
 			{"href": "#bs-carousel-attributes", "label": "Attributes"}
+			]},
+			{"Dropdown": [
+			{"href": "#bs-dropdown", "label": "Introduction"},
+			{"href": "#bs-dropdown-example", "label": "Example"},
+			{"href": "#bs-dropdown-attributes", "label": "Attributes"}
 			]},
 			{"Hero": [
 			{"href": "#bs-hero", "label": "Introduction"},
@@ -467,18 +472,18 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 				<p><b>Description:</b>
 					A Bootstrap-powered dropdown component that automatically converts its children into
 					bootstrap-styled dropdown items. Supports wrapper-level Bootstrap classes such as
-					<code>dropup</code>, <code>dropend</code>, <code>dropdown-center</code>, and more.
+					dropup, dropend, dropdown-center, and more.
 				</p>
 
 				<p>⚠️ <b>Note:</b>
-					You do not need to wrap your menu items in <code>&lt;li&gt;</code> tags — the component
-					automatically wraps each child inside <code>&lt;li&gt;</code> and applies the
-					<code>dropdown-item</code> class.
+					You do not need to wrap your menu items in &lt;li&gt; tags — the component
+					automatically wraps each child inside &lt;li&gt; and applies the
+					dropdown-item class.
 				</p>
 
 				<p>📌 <b>ID Behavior:</b>
-					The <code>id</code> attribute is applied to the outer wrapper
-					<code>&lt;div class="dropdown"&gt;</code>,
+					The id attribute is applied to the outer wrapper
+					&lt;div class="dropdown"&gt;,
 					allowing direct DOM selection and integration with scripts.
 				</p>
 			</article>
@@ -560,14 +565,14 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 						<tr>
 							<td>menu-class</td>
 							<td>string</td>
-							<td>Additional CSS classes applied directly to the <code>dropdown-menu</code> element</td>
+							<td>Additional CSS classes applied directly to the dropdown-menu element</td>
 							<td></td>
 							<td>""</td>
 						</tr>
 						<tr>
 							<td>id</td>
 							<td>string</td>
-							<td>HTML id applied to the wrapper <code>&lt;div class="dropdown"&gt;</code></td>
+							<td>HTML id applied to the wrapper &lt;div class="dropdown"&gt;</td>
 							<td></td>
 							<td>""</td>
 						</tr>
@@ -576,8 +581,8 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 							<td>HTMLElement[]</td>
 							<td>
 								Any child elements placed inside the component become dropdown items.<br>
-								Automatically wrapped in <code>&lt;li&gt;</code> and given the
-								<code>dropdown-item</code> class.
+								Automatically wrapped in &lt;li&gt; and given the
+								dropdown-item class.
 							</td>
 							<td></td>
 							<td>none</td>
@@ -587,10 +592,10 @@ console.log(internalBtn);	&lt;button id="example" class="btn btn-primary btn- " 
 							<td>boolean</td>
 							<td>
 								Enables a glossy, semi-transparent visual style for the dropdown menu.<br>
-								Activated by adding the <code>glossy</code> attribute to the component.<br>
+								Activated by adding the glossy attribute to the component.<br>
 								Applies blur/saturate effects and adjusted background/foreground colors.
 							</td>
-							<td><code>&lt;bs-dropdown glossy&gt;&lt;/bs-dropdown&gt;</code></td>
+							<td>&lt;bs-dropdown glossy&gt;&lt;/bs-dropdown&gt;</td>
 							<td>false</td>
 						</tr>
 					</tbody>
